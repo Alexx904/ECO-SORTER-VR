@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 7.2000003
-    y: 81.6
+    x: -147.2
+    y: 380.80002
     width: 2033.6
     height: 1015.2
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Scene
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 412
     height: 959.2
-  m_MinSize: {x: 400, y: 600}
-  m_MaxSize: {x: 600, y: 1200}
+  m_MinSize: {x: 401, y: 626}
+  m_MaxSize: {x: 601, y: 1226}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 115
+  controlID: 112
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -96,8 +96,8 @@ MonoBehaviour:
     y: 0
     width: 337.59998
     height: 959.2
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 76}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -327,8 +327,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Tutorials\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1628.8
-    y: 117.6
+    x: 1474.4
+    y: 416.80002
     width: 411
     height: 933.2
   m_SerializedDataModeController:
@@ -363,8 +363,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 7.2000003
-    y: 736.8
+    x: 0
+    y: 643.2
     width: 1283
     height: 314
   m_SerializedDataModeController:
@@ -516,8 +516,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1291.2001
-    y: 117.6
+    x: 1285
+    y: 24
     width: 335.59998
     height: 933.2
   m_SerializedDataModeController:
@@ -565,8 +565,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 7.2000003
-    y: 117.6
+    x: 0
+    y: 24
     width: 316.6
     height: 593.2
   m_SerializedDataModeController:
@@ -631,8 +631,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 324.80002
-    y: 117.6
+    x: 170.40001
+    y: 416.80002
     width: 964.4
     height: 593.2
   m_SerializedDataModeController:
@@ -1119,9 +1119,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -2.8530426, y: 1.9386954, z: 2.1469307}
+    m_Target: {x: -7.689078, y: 0.5188497, z: -1.4625618}
     speed: 2
-    m_Value: {x: -2.8530426, y: 1.9386954, z: 2.1469307}
+    m_Value: {x: -7.689078, y: 0.5188497, z: -1.4625618}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1167,9 +1167,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.08248224, y: 0.8697043, z: -0.1555742, w: -0.46109962}
+    m_Target: {x: -0.07442619, y: 0.87478447, z: -0.14243759, w: -0.4570899}
     speed: 2
-    m_Value: {x: -0.08248203, y: 0.8697021, z: -0.15557382, w: -0.46109846}
+    m_Value: {x: -0.07497437, y: 0.87461, z: -0.14348674, w: -0.45699874}
   m_Size:
     m_Target: 10
     speed: 2
