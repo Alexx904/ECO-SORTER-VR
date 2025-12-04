@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8676740537572581342}
   - component: {fileID: 376642375418357468}
   - component: {fileID: -7917873823989360109}
+  - component: {fileID: 5252527434000255041}
   m_Layer: 0
   m_Name: Prefab_BurgerBox
   m_TagString: Carta
@@ -189,6 +190,27 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!65 &5252527434000255041
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8528781839718187389}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18647796, y: 0.23134428, z: 0.22758484}
+  m_Center: {x: 0.000000029802322, y: 0.12078683, z: -0.009933144}
 --- !u!1001 &2614226200923943338
 PrefabInstance:
   m_ObjectHideFlags: 0
