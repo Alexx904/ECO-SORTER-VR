@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor; // Necessario per leggere le cartelle nell'Editor
+using UnityEditor;
 #endif
 
-public class ScriptTrashSpawner : MonoBehaviour
+public class SpawnerRifiuti : MonoBehaviour
 {
     [Header("Impostazioni Spawn")]
     public Transform puntoDiSpawn; // Trascina qui l'oggetto vuoto da dove nascono i rifiuti
     public float tempoTraSpawn = 2.0f; // Velocità di spawn (secondi)
 
     [Header("Categorie Rifiuti")]
-    // Questa lista conterrà le nostre categorie (Carta, Plastica, ecc.)
     public List<CategoriaRifiuto> categorie;
 
     private Coroutine spawnCoroutine;
@@ -21,16 +20,14 @@ public class ScriptTrashSpawner : MonoBehaviour
     [System.Serializable]
     public class CategoriaRifiuto
     {
-        public string nome;       // Es: "Carta", "Plastica"
-        public bool attiva = true; // Se false, questa categoria non verrà spawnata
-        public List<GameObject> prefabs; // La lista dei prefab
+        public string nome;       
+        public bool attiva = true; 
+        public List<GameObject> prefabs; 
     }
 
     void Start()
     {
-        // Se non hai assegnato un punto di spawn, usa la posizione di questo oggetto
         if (puntoDiSpawn == null) puntoDiSpawn = transform;
-        
         StartSpawning();
     }
 
@@ -54,7 +51,6 @@ public class ScriptTrashSpawner : MonoBehaviour
         while (isSpawning)
         {
             GeneraRifiuto();
-            // Aspetta il tempo definito prima del prossimo spawn
             yield return new WaitForSeconds(tempoTraSpawn);
         }
     }
@@ -69,7 +65,7 @@ public class ScriptTrashSpawner : MonoBehaviour
                 categorieAttive.Add(cat);
         }
 
-        if (categorieAttive.Count == 0) return; // Nessuna categoria attiva
+        if (categorieAttive.Count == 0) return; 
 
         // 2. Scegli una categoria a caso
         CategoriaRifiuto categoriaScelta = categorieAttive[Random.Range(0, categorieAttive.Count)];
@@ -77,8 +73,14 @@ public class ScriptTrashSpawner : MonoBehaviour
         // 3. Scegli un prefab a caso dentro quella categoria
         GameObject prefabScelto = categoriaScelta.prefabs[Random.Range(0, categoriaScelta.prefabs.Count)];
 
-        // 4. Spawna l'oggetto
-        Instantiate(prefabScelto, puntoDiSpawn.position, Quaternion.identity);
+        // --- NUOVA MODIFICA QUI SOTTO ---
+        
+        // 4. Calcola una rotazione casuale sull'asse Y (da 0 a 360 gradi)
+        // X e Z rimangono a 0 per non far ribaltare l'oggetto, cambia solo la direzione in cui guarda
+        Quaternion rotazioneRandom = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+        // 5. Spawna l'oggetto applicando la rotazione
+        Instantiate(prefabScelto, puntoDiSpawn.position, rotazioneRandom);
     }
 
     // --- FUNZIONI PER CAMBIARE LIVELLO/DIFFICOLTA' ---
@@ -100,13 +102,12 @@ public class ScriptTrashSpawner : MonoBehaviour
         }
     }
 
-    // --- AUTOMAZIONE EDITOR (MAGIA) ---
-    // Questo codice funziona solo nell'Editor di Unity per caricare i file dalle cartelle
+    // --- AUTOMAZIONE EDITOR ---
 #if UNITY_EDITOR
     [ContextMenu("Carica Prefab dalle Cartelle")]
     void CaricaPrefabAutomaticamente()
     {
-        string pathBase = "Assets/Prefabs/Rifiuti"; // Il percorso che mi hai dato
+        string pathBase = "Assets/Prefabs/Rifiuti"; 
         string[] nomiCartelle = { "Carta", "Plastica", "Speciale", "Umido", "Vetro" };
 
         categorie = new List<CategoriaRifiuto>();
@@ -117,7 +118,6 @@ public class ScriptTrashSpawner : MonoBehaviour
             nuovaCat.nome = nomeCartella;
             nuovaCat.prefabs = new List<GameObject>();
 
-            // Cerca tutti i prefab nella cartella specifica
             string fullPath = pathBase + "/" + nomeCartella;
             string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] { fullPath });
 
