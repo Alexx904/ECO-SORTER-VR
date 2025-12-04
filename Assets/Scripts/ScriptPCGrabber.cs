@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PCGrabber : MonoBehaviour
+public class ScriptPCGrabber : MonoBehaviour
 {
     [Header("Impostazioni")]
     public Transform holdPoint;

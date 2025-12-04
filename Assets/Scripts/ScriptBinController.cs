@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BinController : MonoBehaviour
+public class ScriptBinController : MonoBehaviour
 {
     [Tooltip("Scrivi qui il tag esatto che questo bidone deve accettare (es. Plastica)")]
     public string tagAccettato; 
