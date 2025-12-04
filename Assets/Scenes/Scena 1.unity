@@ -1002,9 +1002,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 981287692}
     m_Modifications:
+    - target: {fileID: 522868785862716165, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 522868785862716165, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_Name
       value: NastroTrasportatore (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928560165118345614, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928560165118345614, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660754301287556201, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660754301287556201, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7874385692192504982, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_LocalScale.x
@@ -1049,6 +1081,14 @@ PrefabInstance:
     - target: {fileID: 7874385692192504982, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106982702328576275, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106982702328576275, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1289,7 +1329,7 @@ GameObject:
   - component: {fileID: 608235969}
   - component: {fileID: 608235968}
   - component: {fileID: 608235967}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RifiutoPlasticaTest (1)
   m_TagString: Speciale
   m_Icon: {fileID: 0}
@@ -2089,6 +2129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1046222396}
     m_Modifications:
+    - target: {fileID: 1644703820982035308, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2243020122175513880, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.x
       value: 80
@@ -2172,6 +2216,10 @@ PrefabInstance:
     - target: {fileID: 2243020123108092049, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_SizeDelta.y
       value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3435865013543954137, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+      propertyPath: m_RayInteractor
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4750419573833148750, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2463,12 +2511,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981287692}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: NastroLungo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &981287692
 Transform:
@@ -2502,7 +2550,7 @@ GameObject:
   - component: {fileID: 1019145858}
   - component: {fileID: 1019145862}
   - component: {fileID: 1019145863}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RifiutoPlasticaTest
   m_TagString: Speciale
   m_Icon: {fileID: 0}
@@ -3921,7 +3969,7 @@ MonoBehaviour:
   grabRange: 3
   layerRifiuti:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
 --- !u!4 &1987117722 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8518324294302271954, guid: 58d0a4ac86f2348deb02f3880c71378e, type: 3}
@@ -3935,9 +3983,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 981287692}
     m_Modifications:
+    - target: {fileID: 522868785862716165, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 522868785862716165, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_Name
       value: NastroTrasportatore (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928560165118345614, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928560165118345614, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660754301287556201, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660754301287556201, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7874385692192504982, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_LocalScale.x
@@ -3982,6 +4062,14 @@ PrefabInstance:
     - target: {fileID: 7874385692192504982, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106982702328576275, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106982702328576275, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4168,9 +4256,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 981287692}
     m_Modifications:
+    - target: {fileID: 522868785862716165, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 522868785862716165, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_Name
       value: NastroTrasportatore
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192794858027499891, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928560165118345614, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928560165118345614, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660754301287556201, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660754301287556201, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7874385692192504982, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_LocalScale.x
@@ -4215,6 +4335,14 @@ PrefabInstance:
     - target: {fileID: 7874385692192504982, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106982702328576275, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106982702328576275, guid: 467814d581449b1499fb94bc1159afd5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
