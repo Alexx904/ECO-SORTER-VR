@@ -81,6 +81,10 @@ PrefabInstance:
       value: Canned food 2 crumple
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0960dff34d3becc47b997b501854c0fb, type: 3}
+      propertyPath: m_TagString
+      value: Plastica
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0960dff34d3becc47b997b501854c0fb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}

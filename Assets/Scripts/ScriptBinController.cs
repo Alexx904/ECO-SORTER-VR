@@ -12,7 +12,9 @@ public class ScriptBinController : MonoBehaviour
         if (other.gameObject.CompareTag(tagAccettato))
         {
             Debug.Log("✅ CORRETTO! Hai buttato " + other.gameObject.name);
-            // Qui in futuro metteremo: Punteggio + 10
+            
+            // AGGIUNTA: Aggiungiamo 1 punto chiamando lo ScoreManager
+            ScoreManager.instance.ModificaPunteggio(1f);
             
             // Distruggiamo il rifiuto per pulire la scena
             Destroy(other.gameObject);
@@ -20,14 +22,10 @@ public class ScriptBinController : MonoBehaviour
         else
         {
             Debug.Log("❌ ERRORE! Questo bidone non accetta " + other.gameObject.tag);
-            // Qui in futuro metteremo: Suono di errore
             
-            // Facciamo "sputare" fuori il rifiuto (opzionale)
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            if(rb != null)
-            {
-                rb.linearVelocity = Vector3.up * 5; // Lo spinge in alto
-            }
+            // AGGIUNTA: Togliamo 0.5 punti
+            ScoreManager.instance.ModificaPunteggio(-0.5f);
+            Destroy(other.gameObject);
         }
     }
 }
