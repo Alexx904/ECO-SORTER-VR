@@ -117,4 +117,10 @@ public class ScoreManager : MonoBehaviour
         Time.timeScale = 1f; // NUOVO
         SceneManager.LoadScene("MainMenu");
     }
+    
+    // Serve agli altri script per sapere quanti punti hai fatto
+    public float GetPunteggio()
+    {
+        return punteggioAttuale;
+    }
 }
