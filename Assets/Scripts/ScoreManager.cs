@@ -43,4 +43,10 @@ public class ScoreManager : MonoBehaviour
             whiteBoardText.text = "Punteggio: " + punteggioAttuale.ToString("F1");
         }
     }
+    
+    // Serve agli altri script per sapere quanti punti hai fatto
+    public float GetPunteggio()
+    {
+        return punteggioAttuale;
+    }
 }
