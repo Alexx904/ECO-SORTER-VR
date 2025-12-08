@@ -449,6 +449,7 @@ Transform:
   - {fileID: 213972907}
   - {fileID: 7399358495663410114}
   - {fileID: 993595440}
+  - {fileID: 1836198274}
   m_Father: {fileID: 827746026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &213972907 stripped
@@ -2437,7 +2438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda8138d77f89534e90eccf1cfe431f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tempoTotale: 10
+  tempoTotale: 60
   testoTimer: {fileID: 805366445}
   pannelloGameOver: {fileID: 955142679}
   testoPuntiFinale: {fileID: 547897562}
@@ -2863,19 +2864,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 145715027}
+    m_TransformParent: {fileID: 211970811}
     m_Modifications:
     - target: {fileID: 1172765476650362385, guid: 15e3a5514b573e24da7e9ce3abd4bd0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.560493
+      value: 36.87797
       objectReference: {fileID: 0}
     - target: {fileID: 1172765476650362385, guid: 15e3a5514b573e24da7e9ce3abd4bd0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13449955
+      value: -4.893501
       objectReference: {fileID: 0}
     - target: {fileID: 1172765476650362385, guid: 15e3a5514b573e24da7e9ce3abd4bd0e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.27
+      value: 0.8899994
       objectReference: {fileID: 0}
     - target: {fileID: 1172765476650362385, guid: 15e3a5514b573e24da7e9ce3abd4bd0e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2907,7 +2908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5551080992397239903, guid: 15e3a5514b573e24da7e9ce3abd4bd0e, type: 3}
       propertyPath: m_Name
-      value: TrashbinRed 1
+      value: Trashbin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6793,10 +6794,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3460781532413740785, guid: 36678b5a823aeb843b96d265736accde, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8737829532144422397, guid: 36678b5a823aeb843b96d265736accde, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1836198274}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36678b5a823aeb843b96d265736accde, type: 3}
 --- !u!1 &8776755971874442023
