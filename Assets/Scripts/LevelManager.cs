@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Impostazioni Tempo")]
     public float tempoTotale = 60f; // Durata partita in secondi
-    private float tempoRimanente;
+    public float tempoRimanente;
     private bool partitaInCorso = true;
 
     [Header("Interfaccia (UI)")]
