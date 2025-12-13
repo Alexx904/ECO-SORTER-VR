@@ -292,7 +292,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 10}
+  m_SizeDelta: {x: 6, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &41439511
 MonoBehaviour:
@@ -4330,7 +4330,7 @@ GameObject:
   - component: {fileID: 1066332818}
   - component: {fileID: 1066332817}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: Mirino
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
