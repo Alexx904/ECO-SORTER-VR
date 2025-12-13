@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
             {
                 int minuti = Mathf.FloorToInt(tempoRimanente / 60);
                 int secondi = Mathf.FloorToInt(tempoRimanente % 60);
-                testoTimer.text = string.Format("{0:00}:{1:00}", minuti, secondi);
+                testoTimer.text = string.Format("Tempo rimanente: {0:00}:{1:00}", minuti, secondi);
             }
 
             // Se il tempo finisce...
