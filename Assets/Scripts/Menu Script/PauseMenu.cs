@@ -73,7 +73,7 @@ public class PauseMenu : MonoBehaviour
         {
             float punti = ScoreManager.instance.GetPunteggio();
             // Usa il Rich Text per fare il numero Giallo e Grande
-            testoPunteggio.text = "Punteggio: <color=yellow><size=120%>" + punti + "</size></color>";
+            testoPunteggio.text = "Punteggio: <size=120%>" + punti + "</size>";
         }
 
         // 2. RECUPERA IL TEMPO (Usa il riferimento a LevelManager)
@@ -85,7 +85,7 @@ public class PauseMenu : MonoBehaviour
             int minuti = Mathf.FloorToInt(tempo / 60);
             int secondi = Mathf.FloorToInt(tempo % 60);
             
-            testoTempo.text = string.Format("Tempo rimanente: <color=yellow><size=120%>{0:00}:{1:00}</size></color>", minuti, secondi);
+            testoTempo.text = string.Format("Tempo rimanente: <size=120%>{0:00}:{1:00}</size>", minuti, secondi);
         }
     }
 
