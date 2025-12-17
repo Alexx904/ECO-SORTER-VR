@@ -366,6 +366,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
       value: Level6Button
@@ -777,6 +781,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1573842236}
+    - target: {fileID: 3867473638544549778, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Scena 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4903918125086831936, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_text
       value: Livello 2
@@ -784,6 +792,10 @@ PrefabInstance:
     - target: {fileID: 4903918125086831936, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_fontSize
       value: 44.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
@@ -1640,6 +1652,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
       value: Level3Button
@@ -2243,6 +2259,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
       value: Level8Button
@@ -2582,6 +2602,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
       value: Level5Button
@@ -2791,6 +2815,10 @@ PrefabInstance:
     - target: {fileID: 4903918125086831936, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_fontSize
       value: 44.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
@@ -3767,6 +3795,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 44.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name
       value: Level9Button
@@ -4212,6 +4244,10 @@ PrefabInstance:
     - target: {fileID: 4903918125086831936, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_fontSize
       value: 44.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026512063950134945, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+      propertyPath: livelloID
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
       propertyPath: m_Name

@@ -2247,7 +2247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Livello 1
+  m_text: Livello 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3355,7 +3355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda8138d77f89534e90eccf1cfe431f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  iDLivello: 1
+  iDLivello: 2
   punteggioPerTreStelle: 18
   tempoTotale: 60
   tempoRimanente: 0
@@ -9501,7 +9501,7 @@ MonoBehaviour:
     - {fileID: 7965897804284640975, guid: f509c6e242096864b8edd86f4320839d, type: 3}
     - {fileID: 7552474277160960960, guid: 67cfffb04dde01f4db17581b5fe8f43d, type: 3}
   - nome: Carta
-    attiva: 0
+    attiva: 1
     prefabs:
     - {fileID: 4866114272233487783, guid: d5c4874b7d14db449824f6091c64a79d, type: 3}
     - {fileID: 8084729924938956430, guid: 95b5c948b51195e409193893c5bae3ed, type: 3}
