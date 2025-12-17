@@ -6033,7 +6033,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "Benvenuto al Centro di Riciclo!\r\nSei pronto a fare la differenza?\r\n\r\nGuarda
+    i bidoni alla tua SINISTRA:\r\n\r\n<color=yellow><b>\u25A0 GIALLO</b></color>
+    -> PLASTICA\r\n<color=green><b>\u25A0 VERDE</b></color>  -> VETRO\r\n\r\nHai
+    <color=white><b>1 minuto</b></color> di tempo.\r\nSii veloce, ma attento:\r\nse
+    sbagli bidone perdi mezzo punto!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6060,12 +6064,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 55.45
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 60
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -9109,6 +9113,38 @@ PrefabInstance:
     m_TransformParent: {fileID: 1851268190}
     m_Modifications:
     - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_PressedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692233879470921310, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -9166,11 +9202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4521660088565934668, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4521660088565934668, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4521660088565934668, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9224,7 +9260,32 @@ PrefabInstance:
       propertyPath: m_text
       value: Inizia Partita
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8474949310250124061, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474949310250124061, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.2901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474949310250124061, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.6627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474949310250124061, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.4392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474949310250124061, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474949310250124061, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4283083120
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3226454231109434357, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9391,16 +9452,6 @@ MonoBehaviour:
   puntoDiSpawn: {fileID: 2110726800}
   tempoTraSpawn: 3
   categorie:
-  - nome: Carta
-    attiva: 1
-    prefabs:
-    - {fileID: 4866114272233487783, guid: d5c4874b7d14db449824f6091c64a79d, type: 3}
-    - {fileID: 8084729924938956430, guid: 95b5c948b51195e409193893c5bae3ed, type: 3}
-    - {fileID: 8826757231150767860, guid: 05de62a4955f8994d92fcb55b0181f0a, type: 3}
-    - {fileID: 8823885365226621559, guid: f939051ee859b154f88ab560a47759f1, type: 3}
-    - {fileID: 8528781839718187389, guid: 5f97466bd74002449805c7ae4afb6055, type: 3}
-    - {fileID: 8406294148756018161, guid: 0a7fb83887d10e5479f0781f073f8ec1, type: 3}
-    - {fileID: 6575062291528036605, guid: efa596e1a4fe1074087a325c2a271850, type: 3}
   - nome: Plastica
     attiva: 1
     prefabs:
@@ -9426,31 +9477,6 @@ MonoBehaviour:
     - {fileID: 8687285719469949584, guid: 0fe30a080b161ef429411b9de1835ee5, type: 3}
     - {fileID: 6594926357036414476, guid: ee74946ef47214d4c8069695359d20f2, type: 3}
     - {fileID: 4540563932691067179, guid: 7ac109ca6268f9340b0480fa62ca5024, type: 3}
-  - nome: Speciale
-    attiva: 1
-    prefabs:
-    - {fileID: 7160949527660058438, guid: 68df734661374f04d8e5a043d2303be8, type: 3}
-    - {fileID: 3811056487756901425, guid: 199b66dba1937d147a0322f402064c79, type: 3}
-    - {fileID: 1030148505236711015, guid: 5f780ba5dbf675c499cba60764cf3525, type: 3}
-    - {fileID: 2386363803188532764, guid: afee9895d626e5641a2d11d51e2fe10c, type: 3}
-    - {fileID: 7650665423116242976, guid: 95473c13b11ad6c42afc7b1daa2458f4, type: 3}
-    - {fileID: 8261070146024952160, guid: 85a0c7aa3db571b4ba5e22b8bafb6c1b, type: 3}
-    - {fileID: 7263682159237812187, guid: e924dca1653dc994eb17505d31e2543d, type: 3}
-    - {fileID: 804180022244639294, guid: 16b67379b5ac02146bdc86796f3e7dd7, type: 3}
-  - nome: Umido
-    attiva: 1
-    prefabs:
-    - {fileID: 6595402693894830427, guid: 2ff087fe170b1c740849a312f982c8d0, type: 3}
-    - {fileID: 3992420148953451973, guid: d1fe4867730e0604a840882d94e42398, type: 3}
-    - {fileID: 8399232217412637556, guid: a6fdc92f3ba2a2e428c8916ea8b40f0c, type: 3}
-    - {fileID: 3994454146694042826, guid: 050c14f37f99039488b652f635d91ab1, type: 3}
-    - {fileID: 988310138240518234, guid: e7879e08e585ea045b192551ee958272, type: 3}
-    - {fileID: 7100264065149077625, guid: 711c460718a3b3a49aa88d16390dd6ec, type: 3}
-    - {fileID: 2973453058426362490, guid: 83e97ca4543b14043b3f393ee68fa76f, type: 3}
-    - {fileID: 3994318257799097353, guid: 6a4f10fa1760ea745a56ff98baf56d82, type: 3}
-    - {fileID: 7871789851697233025, guid: 1fad0d7c33c2f564692ba575e0dbc23f, type: 3}
-    - {fileID: 5636054955163698958, guid: 0b9b78e915122a8498a84705220a72a1, type: 3}
-    - {fileID: 6513078243515965428, guid: 70946b692c6b02349b8b09392053fd96, type: 3}
   - nome: Vetro
     attiva: 1
     prefabs:
@@ -9471,6 +9497,41 @@ MonoBehaviour:
     - {fileID: 7959312822116164320, guid: 43354840beb60d64291a7793a2d576e6, type: 3}
     - {fileID: 7965897804284640975, guid: f509c6e242096864b8edd86f4320839d, type: 3}
     - {fileID: 7552474277160960960, guid: 67cfffb04dde01f4db17581b5fe8f43d, type: 3}
+  - nome: Carta
+    attiva: 0
+    prefabs:
+    - {fileID: 4866114272233487783, guid: d5c4874b7d14db449824f6091c64a79d, type: 3}
+    - {fileID: 8084729924938956430, guid: 95b5c948b51195e409193893c5bae3ed, type: 3}
+    - {fileID: 8826757231150767860, guid: 05de62a4955f8994d92fcb55b0181f0a, type: 3}
+    - {fileID: 8823885365226621559, guid: f939051ee859b154f88ab560a47759f1, type: 3}
+    - {fileID: 8528781839718187389, guid: 5f97466bd74002449805c7ae4afb6055, type: 3}
+    - {fileID: 8406294148756018161, guid: 0a7fb83887d10e5479f0781f073f8ec1, type: 3}
+    - {fileID: 6575062291528036605, guid: efa596e1a4fe1074087a325c2a271850, type: 3}
+  - nome: Umido
+    attiva: 0
+    prefabs:
+    - {fileID: 6595402693894830427, guid: 2ff087fe170b1c740849a312f982c8d0, type: 3}
+    - {fileID: 3992420148953451973, guid: d1fe4867730e0604a840882d94e42398, type: 3}
+    - {fileID: 8399232217412637556, guid: a6fdc92f3ba2a2e428c8916ea8b40f0c, type: 3}
+    - {fileID: 3994454146694042826, guid: 050c14f37f99039488b652f635d91ab1, type: 3}
+    - {fileID: 988310138240518234, guid: e7879e08e585ea045b192551ee958272, type: 3}
+    - {fileID: 7100264065149077625, guid: 711c460718a3b3a49aa88d16390dd6ec, type: 3}
+    - {fileID: 2973453058426362490, guid: 83e97ca4543b14043b3f393ee68fa76f, type: 3}
+    - {fileID: 3994318257799097353, guid: 6a4f10fa1760ea745a56ff98baf56d82, type: 3}
+    - {fileID: 7871789851697233025, guid: 1fad0d7c33c2f564692ba575e0dbc23f, type: 3}
+    - {fileID: 5636054955163698958, guid: 0b9b78e915122a8498a84705220a72a1, type: 3}
+    - {fileID: 6513078243515965428, guid: 70946b692c6b02349b8b09392053fd96, type: 3}
+  - nome: Speciale
+    attiva: 0
+    prefabs:
+    - {fileID: 7160949527660058438, guid: 68df734661374f04d8e5a043d2303be8, type: 3}
+    - {fileID: 3811056487756901425, guid: 199b66dba1937d147a0322f402064c79, type: 3}
+    - {fileID: 1030148505236711015, guid: 5f780ba5dbf675c499cba60764cf3525, type: 3}
+    - {fileID: 2386363803188532764, guid: afee9895d626e5641a2d11d51e2fe10c, type: 3}
+    - {fileID: 7650665423116242976, guid: 95473c13b11ad6c42afc7b1daa2458f4, type: 3}
+    - {fileID: 8261070146024952160, guid: 85a0c7aa3db571b4ba5e22b8bafb6c1b, type: 3}
+    - {fileID: 7263682159237812187, guid: e924dca1653dc994eb17505d31e2543d, type: 3}
+    - {fileID: 804180022244639294, guid: 16b67379b5ac02146bdc86796f3e7dd7, type: 3}
 --- !u!1 &2111154082
 GameObject:
   m_ObjectHideFlags: 0
