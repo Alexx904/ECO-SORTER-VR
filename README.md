@@ -45,8 +45,6 @@ Consigliato:
 - Piattaforma di destinazione: Windows PC per sviluppo; supporto per headset che usano OpenXR (es. Meta Quest tramite Link/ADB, headset SteamVR, Windows Mixed Reality).
 - CPU/GPU adeguata per VR; headset VR compatibile.
 
-Nota: se preferite una versione specifica di Unity usata nel corso, aggiornate l'intestazione "Requisiti" di conseguenza.
-
 ---
 
 ## Installazione e avvio
