@@ -165,4 +165,29 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    // --- NUOVA FUNZIONE PER IL LIVELLO SUCCESSIVO ---
+    public void CaricaProssimoLivello()
+    {
+        // 1. Scongela il tempo (fondamentale, altrimenti il prossimo livello parte bloccato)
+        Time.timeScale = 1f;
+
+        // 2. Calcola il nome della prossima scena
+        // Se siamo al livello 1, cercherà "Scena 2"
+        // Nota: Assicurati che ci sia lo spazio dopo "Scena" se i tuoi file si chiamano "Scena 1"
+        string nomeProssimaScena = "Scena " + (iDLivello + 1);
+
+        Debug.Log("Caricamento in corso: " + nomeProssimaScena);
+
+        // 3. Controlla se la scena esiste nel Build Settings (Opzionale ma utile per evitare crash)
+        if (Application.CanStreamedLevelBeLoaded(nomeProssimaScena))
+        {
+            SceneManager.LoadScene(nomeProssimaScena);
+        }
+        else
+        {
+            Debug.LogError("ERRORE: Non trovo la scena chiamata '" + nomeProssimaScena + "'. Controlla i Build Settings!");
+            // Opzionale: Se non esiste il livello successivo, torna al menu
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
 }
