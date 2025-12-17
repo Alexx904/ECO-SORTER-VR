@@ -9794,7 +9794,7 @@ MonoBehaviour:
     - {fileID: 7965897804284640975, guid: f509c6e242096864b8edd86f4320839d, type: 3}
     - {fileID: 7552474277160960960, guid: 67cfffb04dde01f4db17581b5fe8f43d, type: 3}
   - nome: Carta
-    attiva: 0
+    attiva: 1
     prefabs:
     - {fileID: 4866114272233487783, guid: d5c4874b7d14db449824f6091c64a79d, type: 3}
     - {fileID: 8084729924938956430, guid: 95b5c948b51195e409193893c5bae3ed, type: 3}
