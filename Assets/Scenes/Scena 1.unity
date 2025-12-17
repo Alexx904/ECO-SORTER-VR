@@ -9523,7 +9523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TipsRotator
   testoConsiglio: {fileID: 985059328}
-  tempoPerOgniConsiglio: 2
+  tempoPerOgniConsiglio: 10
   consigli:
   - 'Ricordati: Le bottiglie di plastica vanno schiacciate!'
   - La carta sporca di cibo non va nella carta, ma nell'organico.
