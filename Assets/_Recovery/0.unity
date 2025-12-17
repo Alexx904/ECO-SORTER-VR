@@ -9883,17 +9883,11 @@ MonoBehaviour:
   tempoPerOgniConsiglio: 10
   consigli:
   - 'Ricordati: Le bottiglie di plastica vanno schiacciate!'
-  - "Una lattina di alluminio pu\xF2 diventare una nuova lattina in soli 60 giorni!"
+  - La carta sporca di cibo non va nella carta, ma nell'organico.
   - "Il vetro \xE8 riciclabile all'infinito!"
   - Togli sempre il tappo dai barattoli di vetro.
   - Le scontrini fiscali non vanno nella carta (sono carta termica)!
   - Usa meno plastica possibile per salvare gli oceani.
-  - Sciacqua sempre i vasetti dello yogurt prima di buttarli nella plastica.
-  - Per ogni tonnellata di carta riciclata, salviamo circa 15 alberi!
-  - Le batterie non vanno mai nei bidoni normali, portale negli appositi contenitori.
-  - Le batterie non vanno mai nei bidoni normali, portale negli appositi contenitori.
-  - "Usa una borraccia invece delle bottigliette di plastica: \xE8 la scelta pi\xF9
-    ecologica!"
 --- !u!114 &2111154085
 MonoBehaviour:
   m_ObjectHideFlags: 0
