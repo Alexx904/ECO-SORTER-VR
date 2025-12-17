@@ -1350,6 +1350,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &317636815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4293697783666065158, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+  m_PrefabInstance: {fileID: 1597056016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328913968
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,6 +2190,16 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4521660088565934668, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
   m_PrefabInstance: {fileID: 605195408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &674902371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4293697783666065158, guid: 6d71a8c423fd5c547a9f16582faa2425, type: 3}
+  m_PrefabInstance: {fileID: 3482910867318561996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &691842849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5492623419799583511, guid: fe101597f4cda2941a28dca494dffac9, type: 3}
+  m_PrefabInstance: {fileID: 3650447000785279583}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &699503027 stripped
 RectTransform:
@@ -4049,7 +4064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 674902371}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1441362381
@@ -4835,6 +4850,10 @@ MonoBehaviour:
   settingsPanel: {fileID: 1110375586}
   resetPanel: {fileID: 1023000117}
   sandboxWIPText: {fileID: 0}
+  primoBottoneMenu: {fileID: 674902371}
+  primoBottoneLivelli: {fileID: 691842849}
+  primoBottoneOpzioni: {fileID: 723883395}
+  primoBottoneReset: {fileID: 317636815}
   sandboxButton: {fileID: 0}
 --- !u!4 &1573842237
 Transform:

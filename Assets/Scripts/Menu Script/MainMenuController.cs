@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; // <--- AGGIUNTO: Serve per comandare il controller
 
 public class MainMenuController : MonoBehaviour
 {
@@ -8,70 +9,92 @@ public class MainMenuController : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject levelSelectPanel;
     public GameObject settingsPanel;
-    public GameObject resetPanel; // <--- NUOVO: Trascina qui il ResetPanel
+    public GameObject resetPanel;
     public GameObject sandboxWIPText; 
+
+    [Header("Bottoni di Partenza (Controller/VR)")]
+    // TRASCINA QUI I BOTTONI CHE SI DEVONO ACCENDERE APPENA APRI UN MENU
+    public GameObject primoBottoneMenu;      // Es. Il bottone "Seleziona Livello"
+    public GameObject primoBottoneLivelli;   // Es. Il bottone "Livello 1"
+    public GameObject primoBottoneOpzioni;   // Es. Il bottone "Indietro" o "Audio"
+    public GameObject primoBottoneReset;     // Es. Il bottone "Indietro" del reset
 
     [Header("Bottoni Sandbox")]
     public Button sandboxButton;
 
     private void Start()
     {
-        // Assicuriamoci che solo il menu principale sia visibile all'inizio
         ShowMainMenu();
     }
 
+    // --- QUESTA È LA FUNZIONE CHE FA FUNZIONARE IL CONTROLLER ---
+    void SelezionaBottone(GameObject bottone)
+    {
+        // 1. Pulisce la memoria del controller
+        EventSystem.current.SetSelectedGameObject(null);
+        
+        // 2. Gli dice forzatamente quale nuovo bottone guardare
+        if (bottone != null)
+        {
+            EventSystem.current.SetSelectedGameObject(bottone);
+        }
+    }
+    // ------------------------------------------------------------
+
     public void ShowMainMenu()
     {
+        ResetAllPanels();
         mainMenuPanel.SetActive(true);
-        levelSelectPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        if(resetPanel != null) resetPanel.SetActive(false); // Assicurati che sia chiuso
-        if(sandboxWIPText) sandboxWIPText.SetActive(false);
+        SelezionaBottone(primoBottoneMenu); // <-- Seleziona il bottone del menu
     }
 
     public void ShowLevelSelect()
     {
-        mainMenuPanel.SetActive(false);
+        ResetAllPanels();
         levelSelectPanel.SetActive(true);
-        settingsPanel.SetActive(false);
+        SelezionaBottone(primoBottoneLivelli); // <-- Seleziona il Livello 1
     }
 
     public void ShowSettings()
     {
-        mainMenuPanel.SetActive(false);
-        levelSelectPanel.SetActive(false);
+        ResetAllPanels();
         settingsPanel.SetActive(true);
-        if(resetPanel != null) resetPanel.SetActive(false);
+        SelezionaBottone(primoBottoneOpzioni); // <-- Seleziona il primo delle opzioni
     }
 
-    // --- NUOVE FUNZIONI PER IL RESET ---
-
-    // 1. Funzione da collegare al bottone "Reset" (quello nelle opzioni o nel menu)
     public void ApriPannelloReset()
     {
-        // Nascondi gli altri pannelli per pulizia (opzionale, dipende dal tuo design)
-        settingsPanel.SetActive(false); 
-        
-        // Mostra il pannello di conferma
+        // Caso speciale: Chiude Settings e apre Reset
+        if(settingsPanel != null) settingsPanel.SetActive(false);
         if(resetPanel != null) resetPanel.SetActive(true);
+        
+        SelezionaBottone(primoBottoneReset); // <-- Seleziona "Indietro" o "Conferma"
     }
 
-    // 2. Funzione da collegare al bottone "Cancella i Progressi" (CONFERMA)
+    public void AnnullaCancellazione()
+    {
+        if(resetPanel != null) resetPanel.SetActive(false);
+        // Torna alle impostazioni
+        ShowSettings(); 
+    }
+
     public void ConfermaCancellazione()
     {
-        // CANCELLA TUTTO (Punteggi, Livelli sbloccati, Volume, ecc.)
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save(); // Forza il salvataggio immediato
-        
+        PlayerPrefs.Save();
         Debug.Log("⚠️ TUTTI I DATI CANCELLATI!");
-
-        // Ricarica la scena del Menu per aggiornare visivamente i lucchetti e le stelle
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    
-
-    // ------------------------------------
+    // Funzione di pulizia per spegnere tutto prima di accendere un pannello nuovo
+    void ResetAllPanels()
+    {
+        if(mainMenuPanel) mainMenuPanel.SetActive(false);
+        if(levelSelectPanel) levelSelectPanel.SetActive(false);
+        if(settingsPanel) settingsPanel.SetActive(false);
+        if(resetPanel) resetPanel.SetActive(false);
+        if(sandboxWIPText) sandboxWIPText.SetActive(false);
+    }
 
     public void OnSandboxClicked()
     {
