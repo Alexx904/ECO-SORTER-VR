@@ -3508,7 +3508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   iDLivello: 2
   punteggioPerTreStelle: 18
-  tempoTotale: 10
+  tempoTotale: 60
   tempoRimanente: 0
   introPanel: {fileID: 1318360504}
   gameHUD: {fileID: 1597545350}
