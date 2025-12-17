@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [Header("Impostazioni Livello")]
-    public int iDLivello = 1; // IMPORTANTE: Cambia questo numero per ogni scena (1, 2, 3...)
-    public float punteggioPerTreStelle = 15f; // Il punteggio massimo previsto (es. 15)
+    public int iDLivello = 1;
+    public float punteggioPerTreStelle = 15f; 
 
     [Header("Impostazioni Tempo")]
     public float tempoTotale = 60f;
@@ -24,7 +24,13 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI testoTimer;
     public GameObject pannelloGameOver;
     public TextMeshProUGUI testoPuntiFinale;
-    public TextMeshProUGUI testoStelleOttenute; // (Opzionale) Se vuoi scrivere "Hai preso 2 stelle!"
+
+    [Header("Stelle Game Over (Trascinale Qui)")]
+    // --- NUOVE VARIABILI PER LE STELLE DEL GAME OVER ---
+    public GameObject stellaGameover1;
+    public GameObject stellaGameover2;
+    public GameObject stellaGameover3;
+    // ---------------------------------------------------
 
     [Header("Oggetti da Controllare")]
     public GameObject spawnerRifiuti;
@@ -87,7 +93,6 @@ public class LevelManager : MonoBehaviour
         partitaInCorso = false;
         tempoRimanente = 0;
         
-        // Calcoliamo i punti finali
         float puntiFinali = 0;
         if (ScoreManager.instance != null)
         {
@@ -96,11 +101,12 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log("🛑 TEMPO SCADUTO! Punti: " + puntiFinali);
 
-        // --- CALCOLO E SALVATAGGIO STELLE ---
-        CalcolaESalvaStelle(puntiFinali);
-        // ------------------------------------
-
+        // --- ATTIVA IL PANNELLO ---
         if (pannelloGameOver != null) pannelloGameOver.SetActive(true);
+
+        // --- ORA CALCOLIAMO LE STELLE E AGGIORNIAMO LA GRAFICA ---
+        CalcolaESalvaStelle(puntiFinali);
+        // -----------------------------------------------------------
 
         if (testoPuntiFinale != null)
         {
@@ -116,43 +122,36 @@ public class LevelManager : MonoBehaviour
         foreach (var script in scriptsPlayer) if(script != null) script.enabled = false;
     }
 
-    // NUOVA FUNZIONE PER GESTIRE LE STELLE
     void CalcolaESalvaStelle(float punteggio)
     {
-        // Dividiamo il target per 3. Es: 15 / 3 = 5.
-        // 1 stella = 5 punti, 2 stelle = 10 punti, 3 stelle = 15 punti.
         float step = punteggioPerTreStelle / 3f;
-
         int stelleGuadagnate = 0;
 
-        if (punteggio >= punteggioPerTreStelle) 
-            stelleGuadagnate = 3;
-        else if (punteggio >= step * 2) 
-            stelleGuadagnate = 2;
-        else if (punteggio >= step) 
-            stelleGuadagnate = 1;
-        else 
-            stelleGuadagnate = 0;
+        if (punteggio >= punteggioPerTreStelle) stelleGuadagnate = 3;
+        else if (punteggio >= step * 2) stelleGuadagnate = 2;
+        else if (punteggio >= step) stelleGuadagnate = 1;
+        else stelleGuadagnate = 0;
 
-        // Creiamo una chiave unica per il salvataggio, es: "Livello_1_Stelle"
+        // 1. SALVATAGGIO DATI (Per il Menu)
         string chiaveSalvataggio = "Livello_" + iDLivello + "_Stelle";
-
-        // Recuperiamo il vecchio record (se non c'è, è 0)
         int recordPrecedente = PlayerPrefs.GetInt(chiaveSalvataggio, 0);
 
-        // Se abbiamo fatto meglio di prima, salviamo il nuovo risultato
         if (stelleGuadagnate > recordPrecedente)
         {
             PlayerPrefs.SetInt(chiaveSalvataggio, stelleGuadagnate);
-            PlayerPrefs.Save(); // Forza il salvataggio su disco
-            Debug.Log($"Nuovo Record! Salvate {stelleGuadagnate} stelle per il Livello {iDLivello}");
+            PlayerPrefs.Save();
         }
         
-        // (Opzionale) Aggiorna un testo nel Game Over
-        if(testoStelleOttenute != null)
-        {
-            testoStelleOttenute.text = "Stelle ottenute: " + stelleGuadagnate + "/3";
-        }
+        // 2. AGGIORNAMENTO GRAFICO (Per il Game Over attuale)
+        // Prima le spegniamo tutte per sicurezza
+        if(stellaGameover1 != null) stellaGameover1.SetActive(false);
+        if(stellaGameover2 != null) stellaGameover2.SetActive(false);
+        if(stellaGameover3 != null) stellaGameover3.SetActive(false);
+
+        // Poi accendiamo quelle giuste
+        if (stelleGuadagnate >= 1 && stellaGameover1 != null) stellaGameover1.SetActive(true);
+        if (stelleGuadagnate >= 2 && stellaGameover2 != null) stellaGameover2.SetActive(true);
+        if (stelleGuadagnate >= 3 && stellaGameover3 != null) stellaGameover3.SetActive(true);
     }
     
     public void TornaAlMenu()
