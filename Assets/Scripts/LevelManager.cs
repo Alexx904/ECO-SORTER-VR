@@ -1,41 +1,87 @@
 using UnityEngine;
-using TMPro; // Per i testi
-using UnityEngine.SceneManagement; // Per cambiare scena
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [Header("Impostazioni Tempo")]
-    public float tempoTotale = 60f; // Durata partita in secondi
-    public float tempoRimanente;
-    private bool partitaInCorso = true;
+    public float tempoTotale = 60f;
+    [HideInInspector] public float tempoRimanente; 
+    private bool partitaInCorso = false;
+
+    [Header("Intro Livello")]
+    public GameObject introPanel; // Il pannello nero con il tasto "Inizia"
+    public GameObject gameHUD;    // L'interfaccia di gioco (Timer/Punti) da nascondere all'inizio
+
+    [Header("Script da Bloccare (IMPORTANTE)")]
+    // Qui devi trascinare lo script "PlayerInteractionController" o "FirstPersonController"
+    // Così blocchiamo il mouse senza spegnere la telecamera!
+    public MonoBehaviour[] scriptsPlayer; 
 
     [Header("Interfaccia (UI)")]
-    public TextMeshProUGUI testoTimer;       // Il conto alla rovescia in alto (00:00)
-    public GameObject pannelloGameOver;      // Il pannello che appare alla fine
-    public TextMeshProUGUI testoPuntiFinale; // Il testo DENTRO il pannello Game Over
+    public TextMeshProUGUI testoTimer;
+    public GameObject pannelloGameOver;
+    public TextMeshProUGUI testoPuntiFinale;
 
-    [Header("Oggetti da Bloccare (Opzionale)")]
-    public GameObject spawnerRifiuti;        // Per smettere di far nascere rifiuti
+    [Header("Oggetti da Controllare")]
+    public GameObject spawnerRifiuti;
 
     void Start()
     {
-        // 1. Reset iniziale fondamentale
-        Time.timeScale = 1f; // Assicura che il tempo scorra
-        tempoRimanente = tempoTotale;
-        partitaInCorso = true;
+        // 1. STATO INIZIALE: TUTTO FERMO
+        Time.timeScale = 0f; 
+        partitaInCorso = false;
 
-        // 2. Nascondi il Game Over se è attivo per sbaglio
+        // 2. DISABILITA IL CONTROLLO DEL PLAYER (Ma lascia la Camera accesa!)
+        foreach (var script in scriptsPlayer)
+        {
+            if(script != null) script.enabled = false;
+        }
+
+        // 3. MOSTRA IL CURSORE (Così puoi cliccare "Inizia")
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // 4. Gestione Pannelli UI
+        if (introPanel != null) introPanel.SetActive(true);
+        if (gameHUD != null) gameHUD.SetActive(false); // Nascondi timer e punti all'inizio
         if (pannelloGameOver != null) pannelloGameOver.SetActive(false);
+        if (spawnerRifiuti != null) spawnerRifiuti.SetActive(false);
+
+        tempoRimanente = tempoTotale;
+    }
+
+    // --- QUESTA FUNZIONE VA SUL BOTTONE "INIZIA" ---
+    public void IniziaPartita()
+    {
+        // 1. Chiudi Intro e mostra HUD
+        if (introPanel != null) introPanel.SetActive(false);
+        if (gameHUD != null) gameHUD.SetActive(true);
+        
+        // 2. Avvia Spawner
+        if (spawnerRifiuti != null) spawnerRifiuti.SetActive(true);
+
+        // 3. RIATTIVA IL CONTROLLO DEL PLAYER
+        foreach (var script in scriptsPlayer)
+        {
+            if(script != null) script.enabled = true;
+        }
+
+        // 4. Fai partire il tempo
+        Time.timeScale = 1f;
+        partitaInCorso = true;
+        
+        // 5. NASCONDI IL CURSORE (Per giocare)
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
     {
         if (partitaInCorso)
         {
-            // Gestione Timer
             tempoRimanente -= Time.deltaTime;
 
-            // Aggiorna il testo a schermo (Formato Minuti:Secondi)
             if (testoTimer != null)
             {
                 int minuti = Mathf.FloorToInt(tempoRimanente / 60);
@@ -43,7 +89,6 @@ public class LevelManager : MonoBehaviour
                 testoTimer.text = string.Format("Tempo rimanente: {0:00}:{1:00}", minuti, secondi);
             }
 
-            // Se il tempo finisce...
             if (tempoRimanente <= 0)
             {
                 AttivaGameOver();
@@ -54,38 +99,38 @@ public class LevelManager : MonoBehaviour
     void AttivaGameOver()
     {
         partitaInCorso = false;
-        tempoRimanente = 0; // Per evitare numeri negativi
+        tempoRimanente = 0;
         Debug.Log("🛑 TEMPO SCADUTO!");
 
-        // 1. Mostra il Pannello
         if (pannelloGameOver != null) pannelloGameOver.SetActive(true);
 
-        // 2. Recupera i punti dallo ScoreManager e scrivili
         if (testoPuntiFinale != null && ScoreManager.instance != null)
         {
             float puntiFinali = ScoreManager.instance.GetPunteggio();
             testoPuntiFinale.text = "Hai totalizzato: " + puntiFinali + " punti!";
         }
 
-        // 3. Blocca il Gioco
-        Time.timeScale = 0f; // Congela fisica e movimenti
+        Time.timeScale = 0f;
         
-        // 4. Sblocca il Mouse (per cliccare i tasti)
+        // Sblocca il cursore per cliccare i menu
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // 5. Spegni lo Spawner (così non nascono oggetti mentre sei fermo)
         if (spawnerRifiuti != null) spawnerRifiuti.SetActive(false);
-    }
-
-    // Funzione per il bottone "Torna al Menu"
-    public void TornaAlMenu()
-    {
-        Time.timeScale = 1f; // Riattiva il tempo prima di uscire
-        SceneManager.LoadScene("MainMenu"); // Assicurati che il nome sia giusto!
+        
+        // Disabilita di nuovo i controlli player per evitare movimenti strani nel menu
+        foreach (var script in scriptsPlayer)
+        {
+            if(script != null) script.enabled = false;
+        }
     }
     
-    // Funzione per il bottone "Ricomincia" (se vuoi metterlo)
+    public void TornaAlMenu()
+    {
+        Time.timeScale = 1f; 
+        SceneManager.LoadScene("MainMenu");
+    }
+    
     public void RicominciaLivello()
     {
         Time.timeScale = 1f;
