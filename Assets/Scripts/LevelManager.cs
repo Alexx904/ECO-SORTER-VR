@@ -4,74 +4,60 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Impostazioni Livello")]
+    public int iDLivello = 1; // IMPORTANTE: Cambia questo numero per ogni scena (1, 2, 3...)
+    public float punteggioPerTreStelle = 15f; // Il punteggio massimo previsto (es. 15)
+
     [Header("Impostazioni Tempo")]
     public float tempoTotale = 60f;
     [HideInInspector] public float tempoRimanente; 
     private bool partitaInCorso = false;
 
     [Header("Intro Livello")]
-    public GameObject introPanel; // Il pannello nero con il tasto "Inizia"
-    public GameObject gameHUD;    // L'interfaccia di gioco (Timer/Punti) da nascondere all'inizio
+    public GameObject introPanel;
+    public GameObject gameHUD;
 
-    [Header("Script da Bloccare (IMPORTANTE)")]
-    // Qui devi trascinare lo script "PlayerInteractionController" o "FirstPersonController"
-    // Così blocchiamo il mouse senza spegnere la telecamera!
+    [Header("Script da Bloccare")]
     public MonoBehaviour[] scriptsPlayer; 
 
     [Header("Interfaccia (UI)")]
     public TextMeshProUGUI testoTimer;
     public GameObject pannelloGameOver;
     public TextMeshProUGUI testoPuntiFinale;
+    public TextMeshProUGUI testoStelleOttenute; // (Opzionale) Se vuoi scrivere "Hai preso 2 stelle!"
 
     [Header("Oggetti da Controllare")]
     public GameObject spawnerRifiuti;
 
     void Start()
     {
-        // 1. STATO INIZIALE: TUTTO FERMO
         Time.timeScale = 0f; 
         partitaInCorso = false;
 
-        // 2. DISABILITA IL CONTROLLO DEL PLAYER (Ma lascia la Camera accesa!)
-        foreach (var script in scriptsPlayer)
-        {
-            if(script != null) script.enabled = false;
-        }
+        foreach (var script in scriptsPlayer) if(script != null) script.enabled = false;
 
-        // 3. MOSTRA IL CURSORE (Così puoi cliccare "Inizia")
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // 4. Gestione Pannelli UI
         if (introPanel != null) introPanel.SetActive(true);
-        if (gameHUD != null) gameHUD.SetActive(false); // Nascondi timer e punti all'inizio
+        if (gameHUD != null) gameHUD.SetActive(false);
         if (pannelloGameOver != null) pannelloGameOver.SetActive(false);
         if (spawnerRifiuti != null) spawnerRifiuti.SetActive(false);
 
         tempoRimanente = tempoTotale;
     }
 
-    // --- QUESTA FUNZIONE VA SUL BOTTONE "INIZIA" ---
     public void IniziaPartita()
     {
-        // 1. Chiudi Intro e mostra HUD
         if (introPanel != null) introPanel.SetActive(false);
         if (gameHUD != null) gameHUD.SetActive(true);
-        
-        // 2. Avvia Spawner
         if (spawnerRifiuti != null) spawnerRifiuti.SetActive(true);
 
-        // 3. RIATTIVA IL CONTROLLO DEL PLAYER
-        foreach (var script in scriptsPlayer)
-        {
-            if(script != null) script.enabled = true;
-        }
+        foreach (var script in scriptsPlayer) if(script != null) script.enabled = true;
 
-        // 4. Fai partire il tempo
         Time.timeScale = 1f;
         partitaInCorso = true;
         
-        // 5. NASCONDI IL CURSORE (Per giocare)
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -86,7 +72,7 @@ public class LevelManager : MonoBehaviour
             {
                 int minuti = Mathf.FloorToInt(tempoRimanente / 60);
                 int secondi = Mathf.FloorToInt(tempoRimanente % 60);
-                testoTimer.text = string.Format("Tempo rimanente: {0:00}:{1:00}", minuti, secondi);
+                testoTimer.text = string.Format("Tempo: {0:00}:{1:00}", minuti, secondi);
             }
 
             if (tempoRimanente <= 0)
@@ -100,28 +86,72 @@ public class LevelManager : MonoBehaviour
     {
         partitaInCorso = false;
         tempoRimanente = 0;
-        Debug.Log("🛑 TEMPO SCADUTO!");
+        
+        // Calcoliamo i punti finali
+        float puntiFinali = 0;
+        if (ScoreManager.instance != null)
+        {
+            puntiFinali = ScoreManager.instance.GetPunteggio();
+        }
+
+        Debug.Log("🛑 TEMPO SCADUTO! Punti: " + puntiFinali);
+
+        // --- CALCOLO E SALVATAGGIO STELLE ---
+        CalcolaESalvaStelle(puntiFinali);
+        // ------------------------------------
 
         if (pannelloGameOver != null) pannelloGameOver.SetActive(true);
 
-        if (testoPuntiFinale != null && ScoreManager.instance != null)
+        if (testoPuntiFinale != null)
         {
-            float puntiFinali = ScoreManager.instance.GetPunteggio();
-            testoPuntiFinale.text = "Hai totalizzato: " + puntiFinali + " punti!";
+            testoPuntiFinale.text = "Punteggio finale: " + puntiFinali.ToString("F1");
         }
 
         Time.timeScale = 0f;
-        
-        // Sblocca il cursore per cliccare i menu
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
         if (spawnerRifiuti != null) spawnerRifiuti.SetActive(false);
         
-        // Disabilita di nuovo i controlli player per evitare movimenti strani nel menu
-        foreach (var script in scriptsPlayer)
+        foreach (var script in scriptsPlayer) if(script != null) script.enabled = false;
+    }
+
+    // NUOVA FUNZIONE PER GESTIRE LE STELLE
+    void CalcolaESalvaStelle(float punteggio)
+    {
+        // Dividiamo il target per 3. Es: 15 / 3 = 5.
+        // 1 stella = 5 punti, 2 stelle = 10 punti, 3 stelle = 15 punti.
+        float step = punteggioPerTreStelle / 3f;
+
+        int stelleGuadagnate = 0;
+
+        if (punteggio >= punteggioPerTreStelle) 
+            stelleGuadagnate = 3;
+        else if (punteggio >= step * 2) 
+            stelleGuadagnate = 2;
+        else if (punteggio >= step) 
+            stelleGuadagnate = 1;
+        else 
+            stelleGuadagnate = 0;
+
+        // Creiamo una chiave unica per il salvataggio, es: "Livello_1_Stelle"
+        string chiaveSalvataggio = "Livello_" + iDLivello + "_Stelle";
+
+        // Recuperiamo il vecchio record (se non c'è, è 0)
+        int recordPrecedente = PlayerPrefs.GetInt(chiaveSalvataggio, 0);
+
+        // Se abbiamo fatto meglio di prima, salviamo il nuovo risultato
+        if (stelleGuadagnate > recordPrecedente)
         {
-            if(script != null) script.enabled = false;
+            PlayerPrefs.SetInt(chiaveSalvataggio, stelleGuadagnate);
+            PlayerPrefs.Save(); // Forza il salvataggio su disco
+            Debug.Log($"Nuovo Record! Salvate {stelleGuadagnate} stelle per il Livello {iDLivello}");
+        }
+        
+        // (Opzionale) Aggiorna un testo nel Game Over
+        if(testoStelleOttenute != null)
+        {
+            testoStelleOttenute.text = "Stelle ottenute: " + stelleGuadagnate + "/3";
         }
     }
     

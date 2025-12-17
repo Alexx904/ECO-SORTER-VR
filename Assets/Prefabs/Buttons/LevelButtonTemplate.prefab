@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 1616183402453387852}
   - component: {fileID: 1067931046928627166}
   - component: {fileID: 8137536979833498943}
+  - component: {fileID: 5026512063950134945}
   m_Layer: 5
   m_Name: LevelButtonTemplate
   m_TagString: Untagged
@@ -416,6 +417,22 @@ MonoBehaviour:
   testo: {fileID: 4903918125086831936}
   testoNormale: {r: 1, g: 1, b: 1, a: 1}
   testoSelezionato: {r: 0.4431373, g: 0.65882355, b: 0.3019608, a: 1}
+--- !u!114 &5026512063950134945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5492623419799583511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a39c032d15ff84c9fe6b0f3aa6cfa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelStarDisplay
+  livelloID: 1
+  stella1: {fileID: 0}
+  stella2: {fileID: 0}
+  stella3: {fileID: 0}
 --- !u!1 &5730003111976683262
 GameObject:
   m_ObjectHideFlags: 0
