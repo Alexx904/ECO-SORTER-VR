@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 934216}
   - component: {fileID: 934215}
   - component: {fileID: 934217}
+  - component: {fileID: 934218}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -230,6 +231,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 934214}
   m_CullTransparentMesh: 1
+--- !u!114 &934218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766068eaded281041a88ddd5527c2f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  testoDaIlluminare: {fileID: 1933091989}
+  coloreNormale: {r: 1, g: 1, b: 1, a: 1}
+  coloreSelezionato: {r: 0, g: 1, b: 0, a: 1}
+  scalaIngrandita: {x: 1.1, y: 1.1, z: 1}
 --- !u!1 &8651176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,8 +2026,8 @@ RectTransform:
   m_GameObject: {fileID: 599745840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 299653144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2217,6 +2234,7 @@ GameObject:
   - component: {fileID: 723883396}
   - component: {fileID: 723883398}
   - component: {fileID: 723883397}
+  - component: {fileID: 723883399}
   m_Layer: 5
   m_Name: MusicSlider
   m_TagString: Untagged
@@ -2317,6 +2335,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &723883399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723883395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766068eaded281041a88ddd5527c2f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  testoDaIlluminare: {fileID: 1859907461}
+  coloreNormale: {r: 1, g: 1, b: 1, a: 1}
+  coloreSelezionato: {r: 0, g: 1, b: 0, a: 1}
+  scalaIngrandita: {x: 1.1, y: 1.1, z: 1}
 --- !u!1 &750829543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3604,8 +3638,8 @@ RectTransform:
   m_GameObject: {fileID: 1147182679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1844849546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
