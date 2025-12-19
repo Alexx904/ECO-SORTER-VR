@@ -1,11 +1,34 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // FONDAMENTALE per rilevare il mouse/laser
+using UnityEngine.EventSystems; // Fondamentale per il controller
 
-// Questo script promette di gestire l'entrata del puntatore e il click
-public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
+public class ButtonSound : MonoBehaviour, IPointerEnterHandler, ISelectHandler, IPointerClickHandler, ISubmitHandler
 {
-    // Parte quando il mouse o il laser VR entra nel bottone
+    // --- MOUSE (Passaggio) ---
     public void OnPointerEnter(PointerEventData eventData)
+    {
+        SuonaHover();
+    }
+
+    // --- CONTROLLER / TASTIERA (Spostamento levetta) ---
+    public void OnSelect(BaseEventData eventData)
+    {
+        SuonaHover();
+    }
+
+    // --- MOUSE (Click) ---
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        SuonaClick();
+    }
+
+    // --- CONTROLLER (Tasto A / Invio) ---
+    public void OnSubmit(BaseEventData eventData)
+    {
+        SuonaClick();
+    }
+
+    // --- FUNZIONI DI COLLEGAMENTO AL MANAGER ---
+    void SuonaHover()
     {
         if (UIAudioManager.instance != null)
         {
@@ -13,8 +36,7 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler, IPointerDownHand
         }
     }
 
-    // Parte quando clicchi (o premi il grilletto VR)
-    public void OnPointerDown(PointerEventData eventData)
+    void SuonaClick()
     {
         if (UIAudioManager.instance != null)
         {
