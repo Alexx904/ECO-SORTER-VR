@@ -923,8 +923,8 @@ RectTransform:
   m_GameObject: {fileID: 214337265}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2080071435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4324,8 +4324,8 @@ RectTransform:
   m_GameObject: {fileID: 871434597}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 570998253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8442,6 +8442,7 @@ GameObject:
   - component: {fileID: 1777926004}
   - component: {fileID: 1777926006}
   - component: {fileID: 1777926005}
+  - component: {fileID: 1777926007}
   m_Layer: 5
   m_Name: MusicSlider
   m_TagString: Untagged
@@ -8542,6 +8543,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1777926007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777926003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766068eaded281041a88ddd5527c2f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  testoDaIlluminare: {fileID: 2023561500}
+  coloreNormale: {r: 1, g: 1, b: 1, a: 1}
+  coloreSelezionato: {r: 0, g: 1, b: 0, a: 1}
+  scalaIngrandita: {x: 1.1, y: 1.1, z: 1}
 --- !u!1 &1851268189
 GameObject:
   m_ObjectHideFlags: 0
@@ -8725,6 +8742,7 @@ GameObject:
   - component: {fileID: 1936301185}
   - component: {fileID: 1936301184}
   - component: {fileID: 1936301186}
+  - component: {fileID: 1936301187}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -8825,6 +8843,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936301183}
   m_CullTransparentMesh: 1
+--- !u!114 &1936301187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936301183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766068eaded281041a88ddd5527c2f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  testoDaIlluminare: {fileID: 834975354}
+  coloreNormale: {r: 1, g: 1, b: 1, a: 1}
+  coloreSelezionato: {r: 0, g: 1, b: 0, a: 1}
+  scalaIngrandita: {x: 1.1, y: 1.1, z: 1}
 --- !u!1 &1940670592
 GameObject:
   m_ObjectHideFlags: 0
