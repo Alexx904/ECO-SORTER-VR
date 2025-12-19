@@ -103,6 +103,10 @@ public class LevelManager : MonoBehaviour
 
         // --- ATTIVA IL PANNELLO ---
         if (pannelloGameOver != null) pannelloGameOver.SetActive(true);
+        if (GameMenuController.instance != null) 
+        {
+            GameMenuController.instance.FocusGameOver();
+        }
 
         // --- ORA CALCOLIAMO LE STELLE E AGGIORNIAMO LA GRAFICA ---
         CalcolaESalvaStelle(puntiFinali);

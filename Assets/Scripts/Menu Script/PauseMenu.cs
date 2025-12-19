@@ -55,6 +55,10 @@ public class PauseMenu : MonoBehaviour
         AggiornaDatiPausa(); // 1. Aggiorna i testi PRIMA di mostrare il menu
 
         pauseMenuUI.SetActive(true);
+        if (GameMenuController.instance != null) 
+        {
+            GameMenuController.instance.FocusPausa();
+        }
         
         // Spegni l'HUD di gioco per pulizia visiva
         if(gameHUD != null) gameHUD.SetActive(false);
@@ -107,12 +111,20 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         if(settingsUI != null) settingsUI.SetActive(true);
+        if (GameMenuController.instance != null) 
+        {
+            GameMenuController.instance.FocusSettings();
+        }
     }
 
     public void CloseSettings()
     {
         if(settingsUI != null) settingsUI.SetActive(false);
         pauseMenuUI.SetActive(true);
+        if (GameMenuController.instance != null) 
+        {
+            GameMenuController.instance.FocusPausa();
+        }
     }
 
     public void QuitGame()

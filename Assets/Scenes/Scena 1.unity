@@ -9809,8 +9809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bottoneIntro: {fileID: 2082890170}
   bottonePausa: {fileID: 1077857539}
-  bottoneGameOver: {fileID: 1777926003}
-  bottoneSettings: {fileID: 232677400}
+  bottoneGameOver: {fileID: 232677400}
+  bottoneSettings: {fileID: 1777926003}
 --- !u!4 &2098776976
 Transform:
   m_ObjectHideFlags: 0
@@ -10588,5 +10588,5 @@ SceneRoots:
   - {fileID: 765412370}
   - {fileID: 688471910}
   - {fileID: 593827638}
-  - {fileID: 417933868}
   - {fileID: 2098776976}
+  - {fileID: 417933868}
