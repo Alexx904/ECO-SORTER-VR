@@ -1,17 +1,23 @@
 using UnityEngine;
+using UnityEngine.InputSystem; // <--- NECESSARIO PER IL NUOVO SISTEMA
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInteractionController : MonoBehaviour
 {
+    [Header("INPUT SYSTEM (Trascina qui le azioni)")]
+    public InputActionProperty moveAction;     // Collega qui Player/Move
+    public InputActionProperty lookAction;     // Collega qui Player/Look
+    public InputActionProperty interactAction; // Collega qui Player/Interact
+    public InputActionProperty pauseAction;    // Collega qui Player/Pause
+
     [Header("Impostazioni Movimento")]
     public float walkSpeed = 5f;
-    public float runSpeed = 10f;
-    public float jumpHeight = 2f;
     public float gravity = -9.81f;
 
     [Header("Impostazioni Camera")]
     public Camera playerCamera;
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 15f;   // Sensibilità Mouse
+    public float gamepadSensitivity = 100f; // Sensibilità Gamepad (spesso serve più alta)
     float xRotation = 0f;
 
     [Header("Impostazioni Raccolta Oggetti")]
@@ -19,23 +25,53 @@ public class PlayerInteractionController : MonoBehaviour
     public Transform holdPosition;
     public LayerMask pickupLayer;
 
-    // Variabili private
+    // Riferimenti
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
     private GameObject heldObject;
     private Rigidbody heldObjRb;
+    
+    // Riferimento al menu per la pausa
+    private GameMenuController menuController;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        menuController = FindFirstObjectByType<GameMenuController>();
+
+        // Blocca il cursore al centro
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    // Abilitiamo le azioni quando lo script è attivo
+    void OnEnable()
+    {
+        moveAction.action.Enable();
+        lookAction.action.Enable();
+        interactAction.action.Enable();
+        pauseAction.action.Enable();
+    }
+
+    // Disabilitiamo le azioni quando lo script si spegne (es. Game Over)
+    void OnDisable()
+    {
+        moveAction.action.Disable();
+        lookAction.action.Disable();
+        interactAction.action.Disable();
+        pauseAction.action.Disable();
     }
 
     void Update()
     {
+        // Se il gioco è in pausa, non muoverti
+        if (Time.timeScale == 0) return;
+
         HandleMovement();
+        HandleLook();
         HandleInteraction();
+        HandlePause();
     }
 
     void HandleMovement()
@@ -46,34 +82,40 @@ public class PlayerInteractionController : MonoBehaviour
             velocity.y = -2f;
         }
 
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        // LEGGERE L'INPUT (WASD o Levetta Sinistra)
+        Vector2 inputMove = moveAction.action.ReadValue<Vector2>();
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        Vector3 move = transform.right * inputMove.x + transform.forward * inputMove.y;
+        controller.Move(move * walkSpeed * Time.deltaTime);
 
-        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
-
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * currentSpeed * Time.deltaTime);
-
-    //    if (Input.GetButtonDown("Jump") && isGrounded)
-    //    {
-    //        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-    //    }
-
+        // Gravità
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
+    void HandleLook()
+    {
+        // LEGGERE L'INPUT (Mouse o Levetta Destra)
+        Vector2 inputLook = lookAction.action.ReadValue<Vector2>();
+
+        // Capire se stiamo usando un gamepad o un mouse per regolare la velocità
+        bool isGamepad = inputLook.x != 0 && (Mathf.Abs(inputLook.x) < 2f); // I gamepad danno valori tra -1 e 1
+        float sensitivity = isGamepad ? gamepadSensitivity : mouseSensitivity;
+
+        float lookX = inputLook.x * sensitivity * Time.deltaTime;
+        float lookY = inputLook.y * sensitivity * Time.deltaTime;
+
+        xRotation -= lookY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        transform.Rotate(Vector3.up * lookX);
+    }
+
     void HandleInteraction()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        // LEGGERE IL CLICK (Tasto E o Tasto A del Gamepad)
+        if (interactAction.action.WasPressedThisFrame())
         {
             if (heldObject == null)
             {
@@ -85,6 +127,21 @@ public class PlayerInteractionController : MonoBehaviour
             }
         }
     }
+    
+    void HandlePause()
+    {
+        // LEGGERE LA PAUSA (Esc o Start)
+        if (pauseAction.action.WasPressedThisFrame())
+        {
+            if (menuController != null)
+            {
+                // Dice al menu controller di mettere in pausa
+                menuController.FocusPausa();
+            }
+        }
+    }
+
+    // --- LOGICA DI RACCOLTA (Identica a prima) ---
 
     void TryPickupObject()
     {
@@ -98,36 +155,22 @@ public class PlayerInteractionController : MonoBehaviour
         }
     }
 
-    // --- PARTE MODIFICATA ---
     void PickupObject(GameObject obj)
     {
         heldObject = obj;
         heldObjRb = obj.GetComponent<Rigidbody>();
-
-        // 1. Rendiamo l'oggetto Kinematic: la fisica non lo sposterà più
         heldObjRb.isKinematic = true;
-
-        // 2. Lo spostiamo ESATTAMENTE nella posizione della mano
         heldObject.transform.position = holdPosition.position;
-        
-        // 3. (Opzionale) Resettiamo la rotazione per allinearlo alla mano
-        // heldObject.transform.rotation = holdPosition.rotation; 
-
-        // 4. Lo imparentiamo: ora si muove al 100% con il player
         heldObject.transform.parent = holdPosition;
+        
+        // (Opzionale) Riproduci suono raccolta se vuoi
     }
 
     void DropObject()
     {
-        // 1. Svincoliamo l'oggetto dal player
         heldObject.transform.parent = null;
-
-        // 2. Riattiviamo la fisica
         heldObjRb.isKinematic = false;
-
-        // 3. (Opzionale) Diamo una piccola spinta in avanti per lanciarlo via leggermente
         heldObjRb.AddForce(playerCamera.transform.forward * 2f, ForceMode.Impulse);
-
         heldObject = null;
     }
 }

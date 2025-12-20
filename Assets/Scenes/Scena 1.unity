@@ -3654,7 +3654,7 @@ MonoBehaviour:
   introPanel: {fileID: 1318360504}
   gameHUD: {fileID: 1597545350}
   scriptsPlayer:
-  - {fileID: 1774882862}
+  - {fileID: 0}
   - {fileID: 593827637}
   testoTimer: {fileID: 805366445}
   pannelloGameOver: {fileID: 955142679}
@@ -8209,10 +8209,10 @@ GameObject:
   - component: {fileID: 1774882865}
   - component: {fileID: 1774882864}
   - component: {fileID: 1774882863}
-  - component: {fileID: 1774882862}
   - component: {fileID: 1774882866}
   - component: {fileID: 1774882868}
   - component: {fileID: 1774882867}
+  - component: {fileID: 1774882869}
   m_Layer: 0
   m_Name: PlayerPC
   m_TagString: Untagged
@@ -8220,29 +8220,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1774882862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774882861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3acad7dc83bb6eb4491478ec33b843de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  walkSpeed: 5
-  runSpeed: 10
-  jumpHeight: 2
-  gravity: -9.81
-  playerCamera: {fileID: 14929090}
-  mouseSensitivity: 800
-  pickupRange: 3
-  holdPosition: {fileID: 1280936442}
-  pickupLayer:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!136 &1774882863
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8431,6 +8408,76 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1774882869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774882861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3acad7dc83bb6eb4491478ec33b843de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractionController
+  moveAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Move
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 764ee9a8-41f0-41b3-9d65-e79f692e7e41
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1680190386980627800, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  lookAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Look
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c8394272-1bfc-4f0c-b8ad-6ba92bd5447d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  interactAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Interact
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c8754d8c-c31d-46b0-a65f-7f49f93ad795
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5766018521580690207, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  pauseAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pause
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1aa6da28-24f4-42ca-8085-072246e0b8e2
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7258104546707652238, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  walkSpeed: 5
+  gravity: -9.81
+  playerCamera: {fileID: 14929090}
+  mouseSensitivity: 100
+  gamepadSensitivity: 100
+  pickupRange: 3
+  holdPosition: {fileID: 1280936442}
+  pickupLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &1777926003
 GameObject:
   m_ObjectHideFlags: 0
