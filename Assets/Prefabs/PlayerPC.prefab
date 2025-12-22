@@ -255,7 +255,7 @@ MonoBehaviour:
   walkSpeed: 5
   gravity: -9.81
   playerCamera: {fileID: 2479106613712503981}
-  mouseSensitivity: 0.5
+  mouseSensitivity: 0.1
   gamepadSensitivity: 100
   pickupRange: 3
   holdPosition: {fileID: 3352918268787397348}
@@ -547,7 +547,7 @@ RectTransform:
   m_GameObject: {fileID: 5368636287611380920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6634612462659777334}
