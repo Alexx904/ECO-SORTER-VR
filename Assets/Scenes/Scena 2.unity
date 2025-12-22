@@ -8672,12 +8672,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acad7dc83bb6eb4491478ec33b843de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  moveAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Move
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 7da84fb3-7bfd-49e1-a65e-1e212d3b9b4c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  lookAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Look
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4bd86e3b-1c64-4b2b-ab29-33d3987b885a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  interactAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Interact
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cd35c97b-29bf-4200-b809-d3c83cb86364
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  pauseAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Pause
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4e2c45b4-be9e-4792-8ba9-e513a00cf5f3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   walkSpeed: 5
-  runSpeed: 10
-  jumpHeight: 2
   gravity: -9.81
   playerCamera: {fileID: 14929090}
   mouseSensitivity: 800
+  gamepadSensitivity: 100
   pickupRange: 3
   holdPosition: {fileID: 1280936442}
   pickupLayer:
