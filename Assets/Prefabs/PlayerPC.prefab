@@ -255,8 +255,8 @@ MonoBehaviour:
   walkSpeed: 5
   gravity: -9.81
   playerCamera: {fileID: 2479106613712503981}
-  mouseSensitivity: 0.1
-  gamepadSensitivity: 100
+  mouseSensitivity: 0.25
+  gamepadSensitivity: 150
   pickupRange: 3
   holdPosition: {fileID: 3352918268787397348}
   pickupLayer:
