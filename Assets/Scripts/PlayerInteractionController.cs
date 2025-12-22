@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // <--- NECESSARIO PER IL NUOVO SISTEMA
+using UnityEngine.InputSystem; 
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInteractionController : MonoBehaviour
 {
     [Header("INPUT SYSTEM (Trascina qui le azioni)")]
-    public InputActionProperty moveAction;     // Collega qui Player/Move
-    public InputActionProperty lookAction;     // Collega qui Player/Look
-    public InputActionProperty interactAction; // Collega qui Player/Interact
-    public InputActionProperty pauseAction;    // Collega qui Player/Pause
+    public InputActionProperty moveAction;     
+    public InputActionProperty lookAction;     
+    public InputActionProperty interactAction; 
+    public InputActionProperty pauseAction;    
 
     [Header("Impostazioni Movimento")]
     public float walkSpeed = 5f;
@@ -16,8 +16,13 @@ public class PlayerInteractionController : MonoBehaviour
 
     [Header("Impostazioni Camera")]
     public Camera playerCamera;
-    public float mouseSensitivity = 15f;   // Sensibilità Mouse
-    public float gamepadSensitivity = 100f; // Sensibilità Gamepad (spesso serve più alta)
+    
+    // ORA PUOI USARE VALORI NORMALI
+    // Prova Mouse = 0.5 oppure 1.0
+    // Prova Gamepad = 100 o 150
+    [Range(0.1f, 5f)] public float mouseSensitivity = 1f;   
+    [Range(50f, 300f)] public float gamepadSensitivity = 150f; 
+    
     float xRotation = 0f;
 
     [Header("Impostazioni Raccolta Oggetti")]
@@ -32,20 +37,19 @@ public class PlayerInteractionController : MonoBehaviour
     private GameObject heldObject;
     private Rigidbody heldObjRb;
     
-    // Riferimento al menu per la pausa
     private GameMenuController menuController;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        menuController = FindFirstObjectByType<GameMenuController>();
+        // Trova il menu anche se ci sono più oggetti, ne prende uno valido
+        menuController = Object.FindFirstObjectByType<GameMenuController>();
 
-        // Blocca il cursore al centro
+        // Blocca il cursore
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    // Abilitiamo le azioni quando lo script è attivo
     void OnEnable()
     {
         moveAction.action.Enable();
@@ -54,7 +58,6 @@ public class PlayerInteractionController : MonoBehaviour
         pauseAction.action.Enable();
     }
 
-    // Disabilitiamo le azioni quando lo script si spegne (es. Game Over)
     void OnDisable()
     {
         moveAction.action.Disable();
@@ -65,7 +68,6 @@ public class PlayerInteractionController : MonoBehaviour
 
     void Update()
     {
-        // Se il gioco è in pausa, non muoverti
         if (Time.timeScale == 0) return;
 
         HandleMovement();
@@ -82,28 +84,40 @@ public class PlayerInteractionController : MonoBehaviour
             velocity.y = -2f;
         }
 
-        // LEGGERE L'INPUT (WASD o Levetta Sinistra)
         Vector2 inputMove = moveAction.action.ReadValue<Vector2>();
-
         Vector3 move = transform.right * inputMove.x + transform.forward * inputMove.y;
+        
         controller.Move(move * walkSpeed * Time.deltaTime);
 
-        // Gravità
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
 
     void HandleLook()
     {
-        // LEGGERE L'INPUT (Mouse o Levetta Destra)
         Vector2 inputLook = lookAction.action.ReadValue<Vector2>();
 
-        // Capire se stiamo usando un gamepad o un mouse per regolare la velocità
-        bool isGamepad = inputLook.x != 0 && (Mathf.Abs(inputLook.x) < 2f); // I gamepad danno valori tra -1 e 1
-        float sensitivity = isGamepad ? gamepadSensitivity : mouseSensitivity;
+        // --- FIX SENSIBILITÀ ---
+        // Cerchiamo di capire se è un Gamepad o un Mouse in base all'intensità dell'input
+        // Il Mouse genera valori molto alti (delta pixel), il Gamepad max 1.0
+        bool isGamepad = inputLook.magnitude < 1.1f && inputLook.magnitude > 0f;
 
-        float lookX = inputLook.x * sensitivity * Time.deltaTime;
-        float lookY = inputLook.y * sensitivity * Time.deltaTime;
+        float lookX = 0f;
+        float lookY = 0f;
+
+        if (isGamepad)
+        {
+            // IL GAMEPAD vuole il Time.deltaTime perché è una velocità costante
+            lookX = inputLook.x * gamepadSensitivity * Time.deltaTime;
+            lookY = inputLook.y * gamepadSensitivity * Time.deltaTime;
+        }
+        else
+        {
+            // IL MOUSE NON vuole il Time.deltaTime perché è uno spostamento fisico (pixel)
+            // Moltiplichiamo per un fattore fisso (0.1f) per rendere i valori nell'Inspector più gestibili
+            lookX = inputLook.x * mouseSensitivity * 0.1f;
+            lookY = inputLook.y * mouseSensitivity * 0.1f;
+        }
 
         xRotation -= lookY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -114,44 +128,27 @@ public class PlayerInteractionController : MonoBehaviour
 
     void HandleInteraction()
     {
-        // LEGGERE IL CLICK (Tasto E o Tasto A del Gamepad)
         if (interactAction.action.WasPressedThisFrame())
         {
-            if (heldObject == null)
-            {
-                TryPickupObject();
-            }
-            else
-            {
-                DropObject();
-            }
+            if (heldObject == null) TryPickupObject();
+            else DropObject();
         }
     }
     
     void HandlePause()
     {
-        // LEGGERE LA PAUSA (Esc o Start)
         if (pauseAction.action.WasPressedThisFrame())
         {
-            if (menuController != null)
-            {
-                // Dice al menu controller di mettere in pausa
-                menuController.FocusPausa();
-            }
+            if (menuController != null) menuController.FocusPausa();
         }
     }
-
-    // --- LOGICA DI RACCOLTA (Identica a prima) ---
 
     void TryPickupObject()
     {
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickupRange, pickupLayer))
         {
-            if (hit.collider.GetComponent<Rigidbody>())
-            {
-                PickupObject(hit.collider.gameObject);
-            }
+            if (hit.collider.GetComponent<Rigidbody>()) PickupObject(hit.collider.gameObject);
         }
     }
 
@@ -162,8 +159,6 @@ public class PlayerInteractionController : MonoBehaviour
         heldObjRb.isKinematic = true;
         heldObject.transform.position = holdPosition.position;
         heldObject.transform.parent = holdPosition;
-        
-        // (Opzionale) Riproduci suono raccolta se vuoi
     }
 
     void DropObject()

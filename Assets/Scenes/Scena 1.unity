@@ -8471,7 +8471,7 @@ MonoBehaviour:
   walkSpeed: 5
   gravity: -9.81
   playerCamera: {fileID: 14929090}
-  mouseSensitivity: 20
+  mouseSensitivity: 0.5
   gamepadSensitivity: 100
   pickupRange: 3
   holdPosition: {fileID: 1280936442}
