@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: e6a0b70aa33e6244a8ab5e3a6f111fa8
+AssetOrigin:
+  serializedVersion: 1
+  productId: 316725
+  packageName: Trash bag & Trash box
+  packageVersion: 1.3.0
+  assetPath: Assets/Hash Game studios/Trash Bag & Trash Box/Scenes/Render Scene/ReflectionProbe-0.exr
+  uploadId: 752217
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,6 +113,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
@@ -128,10 +148,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 316725
-  packageName: Trash bag & Trash box
-  packageVersion: 1.3.0
-  assetPath: Assets/Hash Game studios/Trash Bag & Trash Box/Scenes/Render Scene/ReflectionProbe-0.exr
-  uploadId: 752217
