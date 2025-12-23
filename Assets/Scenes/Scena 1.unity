@@ -482,6 +482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 145374229}
+  - component: {fileID: 145374233}
   - component: {fileID: 145374232}
   - component: {fileID: 145374231}
   - component: {fileID: 145374230}
@@ -562,8 +563,8 @@ Canvas:
   m_GameObject: {fileID: 145374228}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 3796334271401369468}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -576,6 +577,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &145374233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145374228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396b5fb0138e249439fc005fe5fe460c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasAutoCamera
+  distanzaDagliOcchi: 1
 --- !u!4 &145715027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8737829532144422397, guid: 36678b5a823aeb843b96d265736accde, type: 3}
@@ -1774,6 +1788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 476039611}
+  - component: {fileID: 476039612}
   - component: {fileID: 476039610}
   - component: {fileID: 476039609}
   - component: {fileID: 476039608}
@@ -1833,8 +1848,8 @@ Canvas:
   m_GameObject: {fileID: 476039607}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 3796334271401369468}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1870,6 +1885,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &476039612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476039607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396b5fb0138e249439fc005fe5fe460c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasAutoCamera
+  distanzaDagliOcchi: 1
 --- !u!1 &513615474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 587345540}
+  - component: {fileID: 587345544}
   - component: {fileID: 587345543}
   - component: {fileID: 587345542}
   - component: {fileID: 587345541}
@@ -2574,8 +2603,8 @@ Canvas:
   m_GameObject: {fileID: 587345539}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 3796334271401369468}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2588,6 +2617,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &587345544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587345539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 396b5fb0138e249439fc005fe5fe460c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasAutoCamera
+  distanzaDagliOcchi: 1
 --- !u!1 &593827636
 GameObject:
   m_ObjectHideFlags: 0
@@ -9354,6 +9396,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPC
       objectReference: {fileID: 0}
+    - target: {fileID: 118544367750796122, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287885085788637703, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 4595445069770646197, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.89
@@ -9399,6 +9449,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+--- !u!20 &3796334271401369468 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2479106613712503981, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+  m_PrefabInstance: {fileID: 3796334271401369467}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4653190294858672137
 Transform:
   m_ObjectHideFlags: 0
@@ -9504,6 +9559,10 @@ PrefabInstance:
     - target: {fileID: 1369691269711957532, guid: 978122c1c77ca7e48aa32a2d981a4690, type: 3}
       propertyPath: m_Name
       value: PlayerVR
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369691269711957532, guid: 978122c1c77ca7e48aa32a2d981a4690, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
