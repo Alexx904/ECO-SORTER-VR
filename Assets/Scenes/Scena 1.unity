@@ -9404,6 +9404,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1375800536934907917, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 3796334271401369470}
+    - target: {fileID: 1375800536934907917, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 3796334271401369469}
+    - target: {fileID: 2715863621851178047, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: mouseSmoothing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715863621851178047, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: mouseSensitivity
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715863621851178047, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+      propertyPath: gamepadSensitivity
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 3287885085788637703, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
       propertyPath: m_TagString
       value: MainCamera
@@ -9468,6 +9488,16 @@ PrefabInstance:
 --- !u!20 &3796334271401369468 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2479106613712503981, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+  m_PrefabInstance: {fileID: 3796334271401369467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &3796334271401369469 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 8176683672595748030, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
+  m_PrefabInstance: {fileID: 3796334271401369467}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3796334271401369470 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2302819221763009719, guid: 70705426af0159d46af21fdbaa146e5c, type: 3}
   m_PrefabInstance: {fileID: 3796334271401369467}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4653190294858672137

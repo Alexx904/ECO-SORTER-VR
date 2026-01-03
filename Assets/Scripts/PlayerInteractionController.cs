@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerInteractionController : MonoBehaviour
 {
-    [Header("INPUT SYSTEM (Trascina qui le azioni)")]
+    [Header("INPUT SYSTEM")]
     public InputActionProperty moveAction;     
     public InputActionProperty lookAction;     
     public InputActionProperty interactAction; 
@@ -19,7 +19,15 @@ public class PlayerInteractionController : MonoBehaviour
     
     [Range(0.1f, 5f)] public float mouseSensitivity = 1f;   
     [Range(50f, 300f)] public float gamepadSensitivity = 150f; 
+
+    [Header("Fluidità Mouse")]
+    [Tooltip("Valore consigliato tra 0.01 (molto reattivo) e 0.1 (molto morbido). 0.03-0.05 è ideale.")]
+    [Range(0.0f, 0.2f)] public float mouseSmoothing = 0.03f; 
     
+    // Variabili per il calcolo dello smoothing
+    private Vector2 currentMouseDelta;
+    private Vector2 currentMouseVelocity;
+
     float xRotation = 0f;
 
     [Header("Impostazioni Raccolta Oggetti")]
@@ -34,17 +42,14 @@ public class PlayerInteractionController : MonoBehaviour
     private GameObject heldObject;
     private Rigidbody heldObjRb;
     
-    // --- Riferimenti Menu ---
     private GameMenuController menuController;
-    private PauseMenu pauseMenuLogic; // NUOVO RIFERIMENTO
+    private PauseMenu pauseMenuLogic; 
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        
-        // Trova i riferimenti automatici
         menuController = Object.FindFirstObjectByType<GameMenuController>();
-        pauseMenuLogic = Object.FindFirstObjectByType<PauseMenu>(); // LO CERCHIAMO QUI
+        pauseMenuLogic = Object.FindFirstObjectByType<PauseMenu>(); 
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -68,11 +73,6 @@ public class PlayerInteractionController : MonoBehaviour
 
     void Update()
     {
-        // --- MODIFICA FONDAMENTALE ---
-        // Prima qui c'era: if (Time.timeScale == 0) return;
-        // L'abbiamo tolto, altrimenti il tasto Start non veniva letto durante la pausa!
-
-        // I movimenti funzionano SOLO se il tempo scorre
         if (Time.timeScale != 0)
         {
             HandleMovement();
@@ -80,7 +80,6 @@ public class PlayerInteractionController : MonoBehaviour
             HandleInteraction();
         }
 
-        // La pausa deve funzionare SEMPRE (anche a gioco fermo)
         HandlePause();
     }
 
@@ -103,23 +102,52 @@ public class PlayerInteractionController : MonoBehaviour
 
     void HandleLook()
     {
-        Vector2 inputLook = lookAction.action.ReadValue<Vector2>();
-        bool isGamepad = inputLook.magnitude < 1.1f && inputLook.magnitude > 0f;
+        Vector2 targetLook = lookAction.action.ReadValue<Vector2>();
+
+        // 1. RILEVAMENTO CORRETTO DEL DEVICE
+        // Chiediamo all'Input System quale dispositivo sta mandando l'input.
+        // Questo è il modo sicuro che non rompe i micro-movimenti del mouse.
+        bool isGamepad = false;
+        if (lookAction.action.activeControl != null)
+        {
+            isGamepad = lookAction.action.activeControl.device is Gamepad;
+        }
 
         float lookX = 0f;
         float lookY = 0f;
 
         if (isGamepad)
         {
-            lookX = inputLook.x * gamepadSensitivity * Time.deltaTime;
-            lookY = inputLook.y * gamepadSensitivity * Time.deltaTime;
+            // --- LOGICA GAMEPAD ---
+            // Il Gamepad ha bisogno di Time.deltaTime per essere fluido e indipendente dagli FPS.
+            // Usiamo 'gamepadSensitivity' (es. 150-300).
+            lookX = targetLook.x * gamepadSensitivity * Time.deltaTime;
+            lookY = targetLook.y * gamepadSensitivity * Time.deltaTime;
+
+            // Reset delle variabili di smoothing del mouse per evitare "drift" se cambi input
+            currentMouseDelta = Vector2.zero;
+            currentMouseVelocity = Vector2.zero;
         }
         else
         {
-            lookX = inputLook.x * mouseSensitivity * 0.1f;
-            lookY = inputLook.y * mouseSensitivity * 0.1f;
+            // --- LOGICA MOUSE ---
+            // Questa è la parte che abbiamo sistemato prima e che ora funziona bene.
+            if (mouseSmoothing > 0f)
+            {
+                currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetLook, ref currentMouseVelocity, mouseSmoothing);
+            }
+            else
+            {
+                currentMouseDelta = targetLook;
+            }
+
+            // Nota: Qui NON usiamo Time.deltaTime perché il Delta del mouse è già "spazio percorso".
+            // Moltiplichiamo per 0.1f per bilanciare i valori alti dei DPI.
+            lookX = currentMouseDelta.x * mouseSensitivity * 0.1f;
+            lookY = currentMouseDelta.y * mouseSensitivity * 0.1f;
         }
 
+        // --- APPLICAZIONE ROTAZIONE ---
         xRotation -= lookY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -140,16 +168,8 @@ public class PlayerInteractionController : MonoBehaviour
     {
         if (pauseAction.action.WasPressedThisFrame())
         {
-            // --- MODIFICA: Ora chiamiamo la logica vera ---
-            if (pauseMenuLogic != null) 
-            {
-                pauseMenuLogic.TogglePause();
-            }
-            // Fallback: se manca la logica, proviamo almeno a evidenziare il bottone (vecchio metodo)
-            else if (menuController != null) 
-            {
-                menuController.FocusPausa();
-            }
+            if (pauseMenuLogic != null) pauseMenuLogic.TogglePause();
+            else if (menuController != null) menuController.FocusPausa();
         }
     }
 
