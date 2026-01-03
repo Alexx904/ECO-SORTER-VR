@@ -19,7 +19,6 @@ Gruppo 27 — Componenti:
 - [Come estendere il progetto](#come-estendere-il-progetto)
 - [Test e valutazione](#test-e-valutazione)
 - [Problemi noti](#problemi-noti)
-- [Licenza e crediti](#licenza-e-crediti)
 - [Contatti](#contatti)
 
 ---
@@ -114,12 +113,6 @@ Se trovi un bug, apri una issue nel repository (sezioni "Issues") descrivendo:
 - headset usato
 - passaggi per riprodurre
 - log/stacktrace (se presente)
-
----
-
-## Licenza e crediti
-- Licenza: MIT (inserire file LICENSE se necessario).
-- Asset esterni: verifica singoli asset (modelli, suoni) per eventuali licenze o attribuzioni richieste.
 
 ---
 
