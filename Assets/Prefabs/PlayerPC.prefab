@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1375800536934907917}
   m_Layer: 0
   m_Name: PlayerPC
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,6 +257,7 @@ MonoBehaviour:
   playerCamera: {fileID: 2479106613712503981}
   mouseSensitivity: 0.25
   gamepadSensitivity: 150
+  mouseSmoothing: 0
   pickupRange: 3
   holdPosition: {fileID: 3352918268787397348}
   pickupLayer:
@@ -274,8 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88472eeb1cfa7834eb60499801b07e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PCFootsteps
-  audioSource: {fileID: 0}
-  characterController: {fileID: 0}
+  audioSource: {fileID: 2302819221763009719}
+  characterController: {fileID: 8176683672595748030}
   suonoPasso: {fileID: 8300000, guid: 31faa1ed5aebfdb46a02e937e9137549, type: 3}
   intervalloCamminata: 0.3
   intervalloCorsa: 0.2
@@ -294,7 +295,7 @@ GameObject:
   - component: {fileID: 8118756283912924615}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,9 +467,9 @@ Canvas:
   m_GameObject: {fileID: 4222435843810197732}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 2479106613712503981}
+  m_PlaneDistance: 0.5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
