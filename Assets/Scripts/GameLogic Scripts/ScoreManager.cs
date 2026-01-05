@@ -1,50 +1,72 @@
 using UnityEngine;
-using TMPro; // Necessario per usare TextMeshPro
+using TMPro;
 
+/// <summary>
+/// Gestisce il sistema di punteggio del gioco.
+/// Si occupa di memorizzare i punti, aggiornare l'interfaccia utente (UI) e fornire l'accesso globale tramite Singleton.
+/// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    // Creiamo un'istanza statica per poter chiamare questo script da ovunque
+    /// <summary>
+    /// Istanza statica per accedere allo ScoreManager da qualsiasi altro script (Pattern Singleton).
+    /// </summary>
     public static ScoreManager instance;
 
-    [Header("Impostazioni UI")]
-    [Tooltip("Trascina qui l'oggetto Text della tua WhiteBoard")]
+    [Header("Riferimenti UI")]
+    [Tooltip("Il componente TextMeshProUGUI dove verrà mostrato il punteggio.")]
     public TextMeshProUGUI whiteBoardText; 
 
+    // Variabile interna per tenere traccia del punteggio corrente
     private float punteggioAttuale = 0;
 
+    /// <summary>
+    /// Metodo chiamato al caricamento dell'istanza dello script.
+    /// Inizializza il Singleton per garantire un unico punto di accesso.
+    /// </summary>
     private void Awake()
     {
-        // Impostiamo questo script come Singleton
         if (instance == null)
         {
             instance = this;
         }
     }
 
+    /// <summary>
+    /// Metodo chiamato al primo frame.
+    /// Imposta la grafica iniziale del punteggio a zero.
+    /// </summary>
     private void Start()
     {
-        // All'inizio del gioco aggiorniamo la scritta a 0
         AggiornaGrafica();
     }
 
-    // Questa funzione verrà chiamata dai bidoni
+    /// <summary>
+    /// Modifica il punteggio attuale aggiungendo (o sottraendo) il valore specificato.
+    /// </summary>
+    /// <param name="valore">La quantità di punti da aggiungere. Usa numeri negativi per penalità.</param>
     public void ModificaPunteggio(float valore)
     {
         punteggioAttuale += valore;
         AggiornaGrafica();
     }
 
-    // Questa funzione scrive il testo sulla WhiteBoard
+    /// <summary>
+    /// Funzione interna per aggiornare il testo nell'interfaccia utente.
+    /// </summary>
     private void AggiornaGrafica()
     {
         if (whiteBoardText != null)
         {
-            // "F1" formatta il numero con 1 decimale (es. 10.5)
+            // "F1" formatta il numero con una sola cifra decimale (es. 10.5)
             whiteBoardText.text = "Punteggio: " + punteggioAttuale.ToString("F1");
         }
     }
-    // AGGIUNGI QUESTA FUNZIONE IN FONDO
-    // Serve agli altri script per sapere quanti punti hai fatto
+
+    /// <summary>
+    /// Restituisce il valore numerico del punteggio attuale.
+    /// Utile per altri manager per calcolare le stelle a fine partita.
+    /// </summary>
+    /// <returns>Il punteggio corrente (float).</returns>
     public float GetPunteggio()
     {
         return punteggioAttuale;
