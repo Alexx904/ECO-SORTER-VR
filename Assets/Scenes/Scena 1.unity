@@ -10192,6 +10192,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8792254381176570585, guid: 36678b5a823aeb843b96d265736accde, type: 3}
+      propertyPath: nastriMobili.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
