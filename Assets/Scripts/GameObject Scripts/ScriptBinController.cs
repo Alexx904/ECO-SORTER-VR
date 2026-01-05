@@ -1,67 +1,81 @@
 using UnityEngine;
 
+/// <summary>
+/// Controlla la logica del singolo bidone della spazzatura.
+/// Verifica la correttezza del rifiuto inserito, gestisce il punteggio e il feedback audio.
+/// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class ScriptBinController : MonoBehaviour
 {
-    [Tooltip("Scrivi qui il tag esatto che questo bidone deve accettare (es. Plastica)")]
+    [Header("Configurazione Bidone")]
+    [Tooltip("Il Tag esatto che questo bidone accetta. Deve corrispondere al Tag dell'oggetto.")]
     public string tagAccettato; 
 
-    [Header("Audio")]
-    [Tooltip("Trascina qui il file audio per quando il rifiuto è GIUSTO")]
+    [Header("Feedback Audio")]
+    [Tooltip("Clip audio da riprodurre quando il rifiuto è corretto.")]
     public AudioClip suonoCorretto; 
 
-    [Tooltip("Trascina qui il file audio per quando il rifiuto è SBAGLIATO (Opzionale)")]
+    [Tooltip("Clip audio da riprodurre quando il rifiuto è sbagliato.")]
     public AudioClip suonoErrato; 
 
+    // Riferimento al componente AudioSource locale
     private AudioSource audioSource;
 
+    /// <summary>
+    /// Inizializza i riferimenti ai componenti necessari.
+    /// </summary>
     void Start()
     {
-        // Recuperiamo il componente AudioSource che dovresti aver aggiunto al bidone
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Questa funzione parte in automatico quando qualcosa entra nel Trigger
+    /// <summary>
+    /// Gestisce l'evento fisico di entrata nel Trigger del bidone.
+    /// Confronta i tag, aggiorna il punteggio tramite ScoreManager e distrugge l'oggetto.
+    /// </summary>
+    /// <param name="other">Il Collider dell'oggetto che è entrato nel bidone.</param>
     private void OnTriggerEnter(Collider other)
     {
-        // Controllo extra: ignoriamo oggetti che non hanno rigidbody o non sono rifiuti
+        // Ignora oggetti che non hanno un corpo fisico (Rigidbody) o non sono interattivi
         if (other.attachedRigidbody == null) return;
 
-        // Controlliamo se l'oggetto che è entrato ha il Tag giusto
+        // Verifica se il Tag dell'oggetto corrisponde a quello accettato dal bidone
         if (other.gameObject.CompareTag(tagAccettato))
         {
-            Debug.Log("✅ CORRETTO! Hai buttato " + other.gameObject.name);
+            Debug.Log($"✅ CORRETTO! Hai buttato: {other.gameObject.name}");
             
-            // AGGIUNTA: Aggiungiamo 1 punto chiamando lo ScoreManager
+            // Aggiunge punti (Bonus)
             if(ScoreManager.instance != null)
             {
                 ScoreManager.instance.ModificaPunteggio(1f);
             }
 
-            // --- NUOVO: RIPRODUCI AUDIO CORRETTO ---
+            // Riproduce il suono di successo
             if (audioSource != null && suonoCorretto != null)
             {
                 audioSource.PlayOneShot(suonoCorretto);
             }
             
-            // Distruggiamo il rifiuto per pulire la scena
+            // Rimuove il rifiuto dalla scena
             Destroy(other.gameObject);
         }
         else
         {
-            Debug.Log("❌ ERRORE! Questo bidone non accetta " + other.gameObject.tag);
+            Debug.Log($"❌ ERRORE! Questo bidone non accetta: {other.gameObject.tag}");
             
-            // AGGIUNTA: Togliamo 0.5 punti
+            // Toglie punti (Malus)
             if (ScoreManager.instance != null)
             {
                 ScoreManager.instance.ModificaPunteggio(-0.5f);
             }
 
-            // --- NUOVO: RIPRODUCI AUDIO ERRATO (Se lo hai inserito) ---
+            // Riproduce il suono di errore
             if (audioSource != null && suonoErrato != null)
             {
                 audioSource.PlayOneShot(suonoErrato);
             }
 
+            // Rimuove comunque il rifiuto errato per pulire l'area
             Destroy(other.gameObject);
         }
     }
