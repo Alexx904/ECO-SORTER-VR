@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.EventSystems; 
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem; 
 
 /// <summary>
 /// Gestisce la logica del Menu Principale, la navigazione tra i pannelli (Impostazioni, Selezione Livelli)
@@ -34,12 +35,71 @@ public class MainMenuController : MonoBehaviour
     [Header("Riferimenti Extra")]
     public Button sandboxButton;
 
+    private Vector2 lastMousePosition;
+    private GameObject lastSelectedObject; // Memoria dell'ultimo bottone selezionato
+    private GameObject activeDefaultButton; // Il bottone di default della pagina attiva
+
     /// <summary>
     /// All'avvio della scena, mostra il menu principale.
     /// </summary>
     private void Start()
     {
         ShowMainMenu();
+    }
+
+    /// <summary>
+    /// Gestisce la logica di input ibrido (Mouse/Gamepad) frame per frame.
+    /// Implementa un sistema di priorità dinamica: il movimento del mouse libera il focus dell'EventSystem 
+    /// per evitare conflitti visivi, mentre l'input del Gamepad ripristina intelligentemente l'ultimo focus attivo 
+    /// o un elemento di fallback.
+    /// </summary>
+    private void Update()
+    {
+        // 1. TRACKING DELLO STATO
+        // Aggiorna costantemente la memoria dell'ultimo oggetto valido selezionato.
+        if (EventSystem.current.currentSelectedGameObject != null)
+        {
+            lastSelectedObject = EventSystem.current.currentSelectedGameObject;
+        }
+
+        // 2. GESTIONE INPUT MOUSE (Mouse Dominance)
+        if (Mouse.current != null)
+        {
+            Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+
+            // Applica una soglia di tolleranza (Deadzone) per ignorare micro-movimenti involontari o drift del sensore.
+            if (mouseDelta.magnitude > 2.0f)
+            {
+                // Se il mouse si muove, rimuove la selezione logica per lasciare priorità all'hover visivo del cursore.
+                if (EventSystem.current.currentSelectedGameObject != null)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+            }
+        }
+
+        // 3. GESTIONE INPUT GAMEPAD (Focus Recovery)
+        if (Gamepad.current != null)
+        {
+            // Rileva input direzionale significativo su Stick Sinistro o D-Pad.
+            bool inputNavigazione = Gamepad.current.leftStick.ReadValue().magnitude > 0.1f || 
+                                    Gamepad.current.dpad.ReadValue().magnitude > 0.1f;
+            
+            // Se c'è input da controller ma il sistema di eventi non ha un target (causa utilizzo mouse precedente)...
+            if (inputNavigazione && EventSystem.current.currentSelectedGameObject == null)
+            {
+                // ...Tenta il ripristino dell'ultimo oggetto noto.
+                if (lastSelectedObject != null && lastSelectedObject.activeInHierarchy)
+                {
+                    SelezionaBottone(lastSelectedObject);
+                }
+                else
+                {
+                    // Fallback: Se la memoria è nulla o l'oggetto non è più attivo, seleziona il default della vista corrente.
+                    SelezionaBottone(activeDefaultButton); 
+                }
+            }
+        }
     }
 
     // --- LOGICA DI NAVIGAZIONE ---
@@ -58,6 +118,7 @@ public class MainMenuController : MonoBehaviour
         if (bottone != null)
         {
             EventSystem.current.SetSelectedGameObject(bottone);
+            lastSelectedObject = bottone;
         }
     }
 
@@ -70,6 +131,7 @@ public class MainMenuController : MonoBehaviour
     {
         ResetAllPanels();
         mainMenuPanel.SetActive(true);
+        activeDefaultButton = primoBottoneMenu;
         SelezionaBottone(primoBottoneMenu); 
     }
 
@@ -80,6 +142,7 @@ public class MainMenuController : MonoBehaviour
     {
         ResetAllPanels();
         levelSelectPanel.SetActive(true);
+        activeDefaultButton = primoBottoneLivelli;
         SelezionaBottone(primoBottoneLivelli); 
     }
 
@@ -90,6 +153,7 @@ public class MainMenuController : MonoBehaviour
     {
         ResetAllPanels();
         settingsPanel.SetActive(true);
+        activeDefaultButton = primoBottoneOpzioni;
         SelezionaBottone(primoBottoneOpzioni); 
     }
 
@@ -100,7 +164,7 @@ public class MainMenuController : MonoBehaviour
     {
         if(settingsPanel != null) settingsPanel.SetActive(false);
         if(resetPanel != null) resetPanel.SetActive(true);
-        
+        activeDefaultButton = primoBottoneReset;
         SelezionaBottone(primoBottoneReset); 
     }
 
