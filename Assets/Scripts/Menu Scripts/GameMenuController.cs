@@ -6,6 +6,7 @@ using UnityEngine.EventSystems; // Necessario per gestire la selezione dei botto
 /// Si assicura che un pulsante sia sempre selezionato (evidenziato) quando si apre un menu,
 /// evitando che il navigatore si perda.
 /// </summary>
+[RequireComponent(typeof(UIInputHandler))]
 public class GameMenuController : MonoBehaviour
 {
     /// <summary>
@@ -13,6 +14,7 @@ public class GameMenuController : MonoBehaviour
     /// Permette di richiamare funzioni da qualsiasi altro script.
     /// </summary>
     public static GameMenuController instance;
+    private UIInputHandler inputHandler;
 
     [Header("Bottoni di Default")]
     [Tooltip("Il bottone da evidenziare automaticamente nel menu iniziale (es. 'Gioca').")]
@@ -33,6 +35,7 @@ public class GameMenuController : MonoBehaviour
     void Awake()
     {
         instance = this;
+        inputHandler = GetComponent<UIInputHandler>();
     }
 
     /// <summary>
@@ -42,7 +45,7 @@ public class GameMenuController : MonoBehaviour
     {
         if (bottoneIntro != null && bottoneIntro.activeInHierarchy)
         {
-            Seleziona(bottoneIntro);
+            inputHandler.ImpostaSelezione(bottoneIntro );
         }
     }
 
@@ -53,7 +56,7 @@ public class GameMenuController : MonoBehaviour
     /// </summary>
     public void FocusPausa()
     {
-        Seleziona(bottonePausa);
+        inputHandler.ImpostaSelezione(bottonePausa);
     }
 
     /// <summary>
@@ -61,7 +64,7 @@ public class GameMenuController : MonoBehaviour
     /// </summary>
     public void FocusGameOver()
     {
-        Seleziona(bottoneGameOver);
+        inputHandler.ImpostaSelezione(bottoneGameOver);
     }
 
     /// <summary>
@@ -69,7 +72,7 @@ public class GameMenuController : MonoBehaviour
     /// </summary>
     public void FocusSettings()
     {
-        Seleziona(bottoneSettings);
+        inputHandler.ImpostaSelezione(bottoneSettings);
     }
     
     /// <summary>
@@ -77,24 +80,7 @@ public class GameMenuController : MonoBehaviour
     /// </summary>
     public void FocusIntro()
     {
-        Seleziona(bottoneIntro);
+        inputHandler.ImpostaSelezione(bottoneIntro);
     }
 
-    // --- LOGICA CORE ---
-
-    /// <summary>
-    /// Funzione interna che forza l'EventSystem di Unity a selezionare un oggetto specifico.
-    /// </summary>
-    /// <param name="bottone">Il GameObject UI da evidenziare.</param>
-    private void Seleziona(GameObject bottone)
-    {
-        // 1. Deseleziona tutto per "pulire" la memoria dell'EventSystem
-        EventSystem.current.SetSelectedGameObject(null);
-
-        // 2. Imposta il nuovo bottone come oggetto attivo
-        if (bottone != null)
-        {
-            EventSystem.current.SetSelectedGameObject(bottone);
-        }
-    }
 }
