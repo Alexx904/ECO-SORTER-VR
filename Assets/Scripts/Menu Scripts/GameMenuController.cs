@@ -1,58 +1,53 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // Necessario per gestire la selezione dei bottoni
 
 /// <summary>
-/// Gestisce la navigazione dell'interfaccia utente (UI) tramite Gamepad o Tastiera.
-/// Si assicura che un pulsante sia sempre selezionato (evidenziato) quando si apre un menu,
-/// evitando che il navigatore si perda.
+/// Controller per i menu in-game (Pausa, Game Over, Intro Livello).
+/// Agisce da interfaccia tra la logica di gioco e il sistema di navigazione UI,
+/// delegando la gestione tecnica dell'input al componente UIInputHandler.
 /// </summary>
-[RequireComponent(typeof(UIInputHandler))]
+[RequireComponent(typeof(UIInputHandler))] // Assicura la presenza del gestore input
 public class GameMenuController : MonoBehaviour
 {
     /// <summary>
-    /// Istanza statica per l'accesso globale (Singleton).
-    /// Permette di richiamare funzioni da qualsiasi altro script.
+    /// Istanza Singleton per accesso globale facile (es. dal PlayerController).
     /// </summary>
     public static GameMenuController instance;
+
+    // Riferimento al componente di gestione input
     private UIInputHandler inputHandler;
 
-    [Header("Bottoni di Default")]
-    [Tooltip("Il bottone da evidenziare automaticamente nel menu iniziale (es. 'Gioca').")]
+    [Header("Bottoni di Default (Target Focus)")]
+    [Tooltip("Bottone iniziale per il pannello Intro (se presente).")]
     public GameObject bottoneIntro;    
     
-    [Tooltip("Il bottone da evidenziare nel menu di Pausa (es. 'Riprendi').")]
+    [Tooltip("Bottone iniziale per il menu di Pausa.")]
     public GameObject bottonePausa;    
     
-    [Tooltip("Il bottone da evidenziare nella schermata di Game Over (es. 'Riprova').")]
+    [Tooltip("Bottone iniziale per la schermata di Game Over.")]
     public GameObject bottoneGameOver; 
     
-    [Tooltip("Il primo elemento selezionabile nel menu Impostazioni (es. Slider Volume o 'Indietro').")]
+    [Tooltip("Bottone iniziale per il menu Impostazioni in-game.")]
     public GameObject bottoneSettings; 
 
-    /// <summary>
-    /// Inizializza il Singleton all'avvio dell'oggetto.
-    /// </summary>
-    void Awake()
+    private void Awake()
     {
         instance = this;
         inputHandler = GetComponent<UIInputHandler>();
     }
 
-    /// <summary>
-    /// Al primo frame, se il menu Intro è attivo, seleziona subito il suo bottone.
-    /// </summary>
-    void Start()
+    private void Start()
     {
+        // Se il livello parte con un menu intro attivo, imposta subito il focus
         if (bottoneIntro != null && bottoneIntro.activeInHierarchy)
         {
-            inputHandler.ImpostaSelezione(bottoneIntro );
+            inputHandler.ImpostaSelezione(bottoneIntro);
         }
     }
 
-    // --- METODI PUBBLICI DI NAVIGAZIONE ---
+    // --- API PUBBLICHE PER IL CONTROLLO FOCUS ---
 
     /// <summary>
-    /// Sposta la selezione del controller sul menu di Pausa.
+    /// Sposta il focus sul menu di Pausa.
     /// </summary>
     public void FocusPausa()
     {
@@ -60,7 +55,7 @@ public class GameMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sposta la selezione del controller sulla schermata di Game Over.
+    /// Sposta il focus sulla schermata di Game Over.
     /// </summary>
     public void FocusGameOver()
     {
@@ -68,7 +63,7 @@ public class GameMenuController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sposta la selezione del controller sul menu delle Impostazioni.
+    /// Sposta il focus sul menu delle Impostazioni.
     /// </summary>
     public void FocusSettings()
     {
@@ -76,11 +71,10 @@ public class GameMenuController : MonoBehaviour
     }
     
     /// <summary>
-    /// Sposta la selezione del controller sul menu Introduttivo.
+    /// Sposta il focus sul menu Introduttivo.
     /// </summary>
     public void FocusIntro()
     {
         inputHandler.ImpostaSelezione(bottoneIntro);
     }
-
 }
