@@ -9026,7 +9026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScriptTrashSpawner
   puntoDiSpawn: {fileID: 2110726800}
-  tempoTraSpawn: 3
+  tempoTraSpawn: 2.8
   categorie:
   - nome: Plastica
     attiva: 1

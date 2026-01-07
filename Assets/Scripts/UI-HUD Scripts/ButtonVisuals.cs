@@ -33,6 +33,14 @@ public class ButtonVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         ResetVisuals();
     }
 
+    /// <summary>
+    /// Quando il bottone viene disattivato, forziamo il reset grafico. Così quando riapparirà, sarà pulito.
+    /// </summary>
+    void OnDisable()
+    {
+        ResetVisuals();
+    }
+
     // --- GESTIONE EVENTI (INTERFACCE) ---
 
     /// <summary>
@@ -67,6 +75,15 @@ public class ButtonVisuals : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         ResetVisuals(); 
     }
 
+    /// <summary>
+    /// Appena si clicca il bottone, si resetta la grafica. Questo impedisce che il bottone rimanga "selezionato" 
+    /// mentre la scena cambia o il menu si chiude.
+    /// </summary>
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ResetVisuals();
+    }
+    
     // --- LOGICA GRAFICA ---
 
     /// <summary>
