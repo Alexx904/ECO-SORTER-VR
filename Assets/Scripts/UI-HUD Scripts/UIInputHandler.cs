@@ -33,8 +33,8 @@ public class UIInputHandler : MonoBehaviour
         {
             Vector2 mouseDelta = Mouse.current.delta.ReadValue();
             
-            // Soglia (Deadzone) di 2.0f per filtrare micro-movimenti o drift del sensore
-            if (mouseDelta.magnitude > 2.0f)
+            // Soglia (Deadzone) per filtrare micro-movimenti o drift del sensore
+            if (mouseDelta.magnitude > 1.0f)
             {
                 // Se il mouse si muove intenzionalmente, rilasciamo il focus logico
                 // per evitare l'artefatto visivo della "doppia selezione".
