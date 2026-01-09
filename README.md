@@ -12,13 +12,10 @@ Gruppo 27 — Componenti:
 ## Indice
 - [Descrizione](#descrizione)
 - [Caratteristiche principali](#caratteristiche-principali)
-- [Requisiti software e hardware](#requisiti-software-e-hardware)
-- [Installazione e avvio](#installazione-e-avvio)
 - [Controlli e gameplay](#controlli-e-gameplay)
 - [Struttura del progetto](#struttura-del-progetto)
 - [Come estendere il progetto](#come-estendere-il-progetto)
 - [Test e valutazione](#test-e-valutazione)
-- [Problemi noti](#problemi-noti)
 - [Contatti](#contatti)
 
 ---
@@ -37,55 +34,25 @@ ECO-SORTER-VR è una applicazione didattica in realtà virtuale che mette il gio
 
 ---
 
-## Requisiti software e hardware
-Consigliato:
-- Unity Editor: 2021.3 LTS o successivo (aggiorna alla versione LTS che usi nel tuo corso).
-- Pacchetti Unity: OpenXR (o il plugin VR che preferisci), XR Interaction Toolkit, TextMeshPro.
-- Piattaforma di destinazione: Windows PC per sviluppo; supporto per headset che usano OpenXR (es. Meta Quest tramite Link/ADB, headset SteamVR, Windows Mixed Reality).
-- CPU/GPU adeguata per VR; headset VR compatibile.
-
----
-
-## Installazione e avvio
-1. Clona il repository:
-   - git clone https://github.com/Alexx904/ECO-SORTER-VR.git
-2. Apri Unity Hub e aggiungi il progetto (se necessario, seleziona la versione di Unity raccomandata).
-3. Apri il progetto in Unity.
-4. Assicurati di installare e abilitare i pacchetti necessari:
-   - Window > Package Manager > installa/abilita "XR Interaction Toolkit" e "OpenXR Plugin" (o il plugin VR che preferisci).
-5. Configura le impostazioni XR:
-   - Project Settings > XR Plug-in Management: abilita il provider adatto (OpenXR).
-   - Configura gli action profiles (se richiesto) e i binding per il controller.
-6. Apri la scena principale:
-   - Apri la scena principale presente in `Assets/Scenes` (es. `Main.unity` o `SampleScene` — verifica il nome esatto nel progetto).
-7. Collega l'headset VR o usa il play mode con emulatore (se disponibile) e premi Play in Unity per testare.
-
-Per build standalone:
-- File > Build Settings: seleziona la piattaforma (PC, Android per Quest), aggiungi la scena principale e crea la build.
-
----
-
 ## Controlli e gameplay
-- Movimento: dipende dall'implementazione XR (teletrasporto o locomozione fisica).
+- Movimento: Levetta sinistra del Meta Quest.
 - Interazione: utilizza i controller VR per afferrare (grip/trigger) e rilasciare oggetti.
 - Obiettivo: inserire ogni oggetto nel contenitore corretto (es. plastica, vetro, indifferenziato).
 - Punteggio: punti assegnati per corretto smaltimento, penalità per errori.
-- Timer: (opzionale) sessione a tempo per valutare performance.
+- Timer: sessione a tempo per valutare performance.
 
-(Specifiche esatte dei controlli sono implementate negli script del progetto e nei profili input OpenXR.)
 
 ---
 
 ## Struttura del progetto (guida rapida)
-Cartelle principali (esempi tipici):
+Cartelle principali:
 - Assets/
-  - Scenes/ — scene del gioco
-  - Scripts/ — logica di gioco (GameManager, ScoreManager, ObjectBehaviour, VRInteractions)
+  - Scenes/ — scene del gioco (LIvelli)
+  - Scripts/ — logica di gioco (codice in C#)
   - Prefabs/ — oggetti riutilizzabili (rifiuti, contenitori, UI)
-  - Art/ — modelli 3D, texture, materiali
+  - Models Scaricati/ — Assets scarricati dall'Unity Assets Store
   - Audio/ — effetti sonori e musica
-  - UI/ — canvas, pannelli HUD
-- ProjectSettings/ — impostazioni del progetto (non editarne manualmente se non si sa cosa si fa)
+  
 
 ---
 
@@ -102,17 +69,6 @@ Cartelle principali (esempi tipici):
 - Test VR: test su device reale per latenza, comfort e corretto binding dei controller.
 - Test di regressione: ogni modifica agli script principali dovrebbe essere testata nelle scene che usano quei sistemi.
 
----
-
-## Problemi noti
-- Assicurati che i profili OpenXR/Controller siano correttamente configurati; binding mancanti possono impedire le interazioni.
-- Performance: ottimizza mesh e texture per ridurre la latenza in VR.
-
-Se trovi un bug, apri una issue nel repository (sezioni "Issues") descrivendo:
-- piattaforma e versione Unity
-- headset usato
-- passaggi per riprodurre
-- log/stacktrace (se presente)
 
 ---
 
