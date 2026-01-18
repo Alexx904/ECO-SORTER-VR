@@ -215,7 +215,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -1680190386980627800, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+    m_Reference: {fileID: -1680190386980627800, guid: 58cec0d59e6fa2548ab46779f1b0cc27, type: 3}
   lookAction:
     m_UseReference: 1
     m_Action:
@@ -227,7 +227,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+    m_Reference: {fileID: -5630151704836100654, guid: 58cec0d59e6fa2548ab46779f1b0cc27, type: 3}
   interactAction:
     m_UseReference: 1
     m_Action:
@@ -239,7 +239,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 5766018521580690207, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+    m_Reference: {fileID: 7249714847572934681, guid: 58cec0d59e6fa2548ab46779f1b0cc27, type: 3}
   pauseAction:
     m_UseReference: 1
     m_Action:
@@ -251,7 +251,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 7258104546707652238, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+    m_Reference: {fileID: 3444817601922212355, guid: 58cec0d59e6fa2548ab46779f1b0cc27, type: 3}
   walkSpeed: 5
   gravity: -9.81
   playerCamera: {fileID: 2479106613712503981}
@@ -280,6 +280,7 @@ MonoBehaviour:
   suonoPasso: {fileID: 8300000, guid: 31faa1ed5aebfdb46a02e937e9137549, type: 3}
   intervalloCamminata: 0.3
   intervalloCorsa: 0.2
+  sogliaCorsa: 6
   variazioneTono: 0.8
 --- !u!1 &3287885085788637703
 GameObject:
